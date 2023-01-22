@@ -1,0 +1,74 @@
+\subsection{Интегро-интеполяционный метод (метод баланса)}
+
+Введем основную сетку, где N - число разбиений.
+\[r_0 < r_1 < \dots < r_N,\ r_i \in [R_L, R_R],\ r_0 = R_L,\ r_N = R_R\]
+\[
+  h_i =r_i - r_{i-1},\ i=1,2, \dots, N
+\]
+\[
+  r_{r-0.5} = \frac{r_i - r_{i-1}}{2},\ i=1,2, \dots, N
+\]
+Введем дополнительную сетку:
+\[
+  \hbar_i = \begin{cases}
+    \frac{h_i + 1}{2},\ i = 0 \\ \\
+    \frac{h_i + h_{i+1}}{2},\ i = 1, 2, \dots, N-1 \\ \\
+    \frac{h_i}{2},\ i = N
+  \end{cases}
+\]
+Проведем аппроксимацию начального уравнения.\\
+Для i\ =\ 0
+\[ -\int_{r_i}^{r_{i+0.5}} \left[\frac{d}{dr}\left(r k(r) \frac{du(r)}{dr}\right) -r q(r)u(r)\right]  \,dr = \int_{r_i}^{r_{i+0.5}} r f(r) \,dr, \]
+\[	-\left[r k(r)\left.\frac{du(r)}{dr} \right\vert_{r=r_{i+0.5}} - r k(r) \left. \frac{du(r)}{dr}\right\vert_{r_i} - \int_{r_i}^{r_{i+0.5}} r q(r) u(r)  \,dr \right]
+  = \int_{r_i}^{r_{i+0.5}} r f(r) \,dr, \]
+Формула центральных разностей:
+\[	\frac{du(r)}{dr}\vert_{r = r_{i+0.5}}\ \approx \frac{v_{i+1}\ -\ v_i}{h_{i+1}}, \]
+Граничное условие:
+\[	k(r) \left. \frac{du(r)}{dr}\right\vert_{r=R_L}\ =\ -\nu_1, \]
+Формула левых прямоугольников:
+\[	\int_{r_i}^{r_{r+0.5}} r \varphi_i \,dr\ =\ \hbar_i r_i \varphi_i \]
+Получаем разностную схему для i = 0:
+\[
+  -\left[ r_{i+0.5} \cdot k_{i+0.5}\frac{v_{i+1}-v_i}{h_{i+1}} - r_i \cdot (-\nu_1) - \hbar r_i q_i v_i \right]\ =\ \hbar_ir_if_i
+\]
+Для i\ =\ 1, 2, \dots, N-1
+\[ -\int_{r_{i-0,5}}^{r_{i+0.5}} \left[\frac{d}{dr}\left(r k(r) \frac{du(r)}{dr}\right) -r q(r)u(r)\right]  \,dr = \int_{r_{i-0.5}}^{r_{i+0.5}} r f(r) \,dr, \]
+\[	-\left[r k(r)\left.\frac{du(r)}{dr} \right\vert_{r=r_{i+0.5}} - r k(r) \left. \frac{du(r)}{dr}\right\vert_{r_{i-0.5}} - \int_{r_{i-0.5}}^{r_{i+0.5}} r q(r) u(r)  \,dr \right]
+= \int_{r_{i-0.5}}^{r_{i+0.5}} r f(r) \,dr, \]
+\[\frac{du(r)}{dr}\vert_{r = r_{i-0.5}}\ \approx \frac{v_{i}\ -\ v_{i-1}}{h_{i}}\]
+\[ \int_{r_{i-0.5}}^{r_{r+0.5}} r \varphi_i \,dr\ =\ \hbar_i r_i \varphi_i \]
+Получаем разностную схему для i\ =\ 1, 2, \dots, N-1:
+\[
+  -\left[ r_{i+0.5} \cdot k_{i+0.5}\frac{v_{i+1}-v_i}{h_{i+1}} - r_{i-0.5}k_{i-0.5}\frac{v_{i}\ -\ v_{i-1}}{h_{i}} - \hbar r_i q_i v_i\right]\ =\ \hbar_ir_if_i
+\]
+Для i\ =\ N:
+  \[-\int_{r_{i-0.5} }^{r_{i}} \left[\frac{d}{dr}\left(r k(r) \frac{du(r)}{dr}\right) -r q(r)u(r)\right]  \,dr = \int_{r_{i-0.5}}^{r_{i}} r f(r) \,dr, \]
+  \[-\left[r k(r)\left.\frac{du(r)}{dr} \right\vert_{r=r_{i}} - r k(r) \left. \frac{du(r)}{dr}\right\vert_{r_{i-0.5}} - \int_{r_{i-0.5}}^{r_i} r q(r) u(r)  \,dr \right]
+  = \int_{r_{i-0.5}}^{r_i} r f(r) \,dr, \]
+  \[\frac{du(r)}{dr}\vert_{r = r_{i-0.5}}\ \approx \frac{v_{i}\ -\ v_{i-1}}{h_{i}}, \]
+  \[-k(r)\left. \frac{du(r)}{dr} \right\vert_{r=R_R}\ =\ -\nu_2 \]
+  \[\int_{r_{i-0.5}}^{r_i} r \varphi(r) \,dr \approx \hbar_i r_i \varphi_i \]
+Получаем разностную схему для i=N:
+\[
+  -\left[ -r_i \cdot (-\nu_2) - r_{i-0.5}k_{i-0.5} \cdot \frac{v_i-v_{i-1}}{h_i}- \hbar_ir_iq_iu_i \right]\ =\ \hbar_ir_if_i
+\]
+После аппроксимации уравнения можно представить в виде системы из трёхдиагональной матрицы где a, c, b - диагонали матрица A и вектора g. Элементы матрицы:\newline
+Для i\ =\ 0
+\begin{align*}
+  c_i\ &=\ r_{i+0.5}\frac{k_{i+0.5}}{h_{i+1}} + \hbar_ir_iq_i \\
+  b_i\ &=\ -r_{i+0.5} \cdot \frac{k_{i+0.5}}{h_{i+1}} \\
+  g_i\ &=\ \hbar_ir_if_i + r(-\nu_1)
+\end{align*}
+Для i\ =\ 1, 2, \dots, N-1
+\begin{align*}
+  a_i\ &=\ -r_{i-0.5}\frac{k_{i-0.5}}{h_i} \\
+  c_i\ &=\ r_{i-0.5}\frac{k_{i-0.5}}{h_i} + r_{i+0.5}\frac{k_{i+0.5}}{h_{i+1}} + \hbar_i r_iq_i \\
+  b_i\ &=\ -r_{i+0.5}\frac{k_{i+0.5}}{h_{i+1}} \\
+  g_i\ &=\ \hbar_i r_i f_i
+\end{align*}
+Для i\ =\ N:
+\begin{align*}
+  a_i\ &=\ -r_{i-0.5}\frac{k_{i-0.5}}{h_i}\\
+  c_i\ &=\ r_{i-0.5}\frac{k_{i-0.5}}{h_i} + \hbar_i r_iq_i \\
+  g_i\ &=\ \hbar_i r_i f_i + r_i \cdot (-\nu_2)
+\end{align*}

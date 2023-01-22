@@ -1,0 +1,6 @@
+{
+  "cmake.sourceDirectory": "${workspaceFolder}/lab1",
+  "files.associations": {
+    "cstddef": "cpp"
+  }
+}

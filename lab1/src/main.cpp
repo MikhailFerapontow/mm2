@@ -24,7 +24,7 @@ double hbar(int i);
 
 int main()
 {
-  /*  std::vector<double> a = { 0, -1, -1, -1 };
+  std::vector<double> a = { 0, -1, -1, -1 };
   std::vector<double> c = { 4,  4,  4,  4 };
   std::vector<double> b = {-1, -1, -1,  0 };
   std::vector<double> r = { 5,  5, 10, 23 };
@@ -33,34 +33,34 @@ int main()
   tma(a, c, b, x, r);
 
   std::copy(x.begin(), x.end(), std::ostream_iterator< double >(std::cout, " "));
-  std::cout << "\n";*/
+  std::cout << "\n";
 
-  std::vector<double> a(N);
-  std::vector<double> c(N);
-  std::vector<double> b(N);
-  std::vector<double> g(N);
-  std::vector<double> x(N);
+  // std::vector<double> a(N);
+  // std::vector<double> c(N);
+  // std::vector<double> b(N);
+  // std::vector<double> g(N);
+  // std::vector<double> x(N);
 
-  a[0] = 0;
-  c[0] = r(0, 0.5) * k(0.5) / h(1) - hbar(0) * r(0) * q(0);
-  b[0] = r(0, 0.5) * k(0.5) / h(1);
-  g[0] = hbar(0) * r(0) * f(0) + r(0) * (-v1);
+  // a[0] = 0;
+  // c[0] = r(0, 0.5) * k(0.5) / h(1) - hbar(0) * r(0) * q(0);
+  // b[0] = r(0, 0.5) * k(0.5) / h(1);
+  // g[0] = hbar(0) * r(0) * f(0) + r(0) * (-v1);
 
-  for (int i = 1; i < N; i++)
-  {
-    a[i] = -r(i, -0.5) * k(i - 0.5) / h(i);
-    c[i] = r(i, -0.5) * k(i -0.5) / h(i)
-           + r(i, +0.5) * k(i + 0.5) / h(i + 1)
-           + hbar(i) * r(i) * q(i);
-    b[i] = -r(i, +0.5) * k(i + 0.5) / h(i + 1);
-    g[i] = hbar(i) * r(i) * f(i);
-  }
+  // for (int i = 1; i < N; i++)
+  // {
+  //   a[i] = -r(i, -0.5) * k(i - 0.5) / h(i);
+  //   c[i] = r(i, -0.5) * k(i -0.5) / h(i)
+  //          + r(i, +0.5) * k(i + 0.5) / h(i + 1)
+  //          + hbar(i) * r(i) * q(i);
+  //   b[i] = -r(i, +0.5) * k(i + 0.5) / h(i + 1);
+  //   g[i] = hbar(i) * r(i) * f(i);
+  // }
 
-  a[N] = -r(N - 0.5) * k(N - 0.5) / h(N);
-  c[N] = r(N - 0.5) * k(N - 0.5) / h(N) + hbar(N) * r(N) * q(N);
-  g[N] = hbar(N) * r(N) * f(N) - r(N) * (-v2);
+  // a[N] = -r(N - 0.5) * k(N - 0.5) / h(N);
+  // c[N] = r(N - 0.5) * k(N - 0.5) / h(N) + hbar(N) * r(N) * q(N);
+  // g[N] = hbar(N) * r(N) * f(N) - r(N) * (-v2);
 
-  return 0;
+  // return 0;
 }
 
 double k(double r)

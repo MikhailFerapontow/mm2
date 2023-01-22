@@ -2,24 +2,29 @@
 #define TMA_HPP
 
 #include <vector>
+#include <cstddef>
 #include <type_traits>
 #include <cassert>
 
-template <typename T>
+template <typename T = double>
 void tma(
   const std::vector< T >& a,
   const std::vector< T >& c,
   const std::vector< T >& b,
-  std::vector< T >& x,
+        std::vector< T >& x,
   const std::vector< T >& r
 ) {
   static_assert(std::is_floating_point< T >::value);
-  assert(a.size() == b.size());
-  assert(a.size() == c.size());
-  assert(a.size() == x.size());
-  assert(a.size() == r.size());
 
-  size_t sz = r.size();
+  std::size_t sz = r.size();
+
+  assert(sz == b.size());
+  assert(sz == c.size());
+  assert(sz == x.size());
+  assert(sz == r.size());
+  assert(a[0] == 0);
+  assert(b[sz - 1] == 0);
+
   std::vector< T > y(sz);
   std::vector< T > p(sz);
 
