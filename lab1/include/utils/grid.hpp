@@ -2,9 +2,8 @@
 #define GRID_HPP
 
 #include <cstddef>
-
-template <typename T = double>
-class Data;
+#include <iostream>
+#include "data.hpp"
 
 template <typename T = double>
 class h1
@@ -22,7 +21,7 @@ class h1
       auto R_L = data_.R_L;
       auto R_R = data_.R_R;
 
-      return (R_R - R_R) / N_;
+      return (R_R - R_L) / N_;
     }
 
   private:
@@ -42,13 +41,13 @@ class h2
     T operator() (std::size_t i)
     {
       assert(i >= 0);
-      assert(i <= N);
+      assert(i <= N_);
 
-      auto h_1 = h1(N, data);
+      auto h_1 = h1(N_, data_);
 
       if (i == 0)
       {
-        return h_1(i + 1) / 2
+        return h_1(i + 1) / 2;
       }
 
       if (i == N_)
@@ -58,6 +57,7 @@ class h2
 
       return (h_1(i) + h_1(i + 1)) / 2;
     }
+
   private:
     std::size_t N_;
     const Data< T > data_;
@@ -74,13 +74,12 @@ class r1
 
     T operator() (std::size_t i)
     {
-      assert(i >= 0);
-      assert(i <= N);
-
       auto h_1 = h1(N_, data_);
       auto R_L = data_.R_L;
 
-      return R_L + h_1(i) * i;
+      auto r = R_L;
+
+      return r + h_1(i) * i;
     }
   private:
     std::size_t N_;
@@ -94,23 +93,20 @@ class r2
   public:
     r2(std::size_t N, const Data< T > data):
       N_(N),
-      data_(data_)
+      data_(data)
     {}
 
     T operator() (std::size_t i)
     {
-      assert(i > 0);
-      assert(i <= N);
-
       auto h_2 = h2(N_, data_);
       auto R_L = data_.R_L;
-
-      for (std::size_t j = 0; j <= i; j ++)
+      auto r = R_L;
+      for (int j = 0; j <= i; j++)
       {
-        R_L += h_2(j);
+        r += h_2(j);
       }
 
-      return R_L;
+      return r;
     }
   private:
     std::size_t N_;

@@ -11,8 +11,8 @@ void tma(
   const std::vector< T >& a,
   const std::vector< T >& c,
   const std::vector< T >& b,
-        std::vector< T >& x,
-  const std::vector< T >& r
+  const std::vector< T >& r,
+        std::vector< T >& x
 ) {
   static_assert(std::is_floating_point< T >::value);
 

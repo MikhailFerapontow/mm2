@@ -5,7 +5,7 @@ template< typename T = double >
 using func_t = T (*)(T);
 
 template <typename T = double>
-struct data
+struct Data
 {
   const T R_L;
   const T R_R;
@@ -16,6 +16,5 @@ struct data
   const T nu_1;
   const T nu_2;
 };
-
 
 #endif
