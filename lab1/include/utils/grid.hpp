@@ -79,7 +79,11 @@ class r1
 
       auto r = R_L;
 
-      return r + h_1(i) * i;
+      for (int j = 1; j <= N; j++)
+      {
+        r += h_1(i);
+      }
+      return r;
     }
   private:
     std::size_t N_;
@@ -100,7 +104,9 @@ class r2
     {
       auto h_2 = h2(N_, data_);
       auto R_L = data_.R_L;
+
       auto r = R_L;
+
       for (int j = 0; j <= i; j++)
       {
         r += h_2(j);
@@ -163,7 +169,7 @@ class q
   public:
     q(std::size_t N, const Data< T > data):
       N_(N),
-      data_(data_)
+      data_(data)
     {}
 
     T operator() (std::size_t i)
@@ -185,7 +191,7 @@ class f
   public:
     f(std::size_t N, const Data< T > data):
       N_(N),
-      data_(data_)
+      data_(data)
     {}
 
     T operator() (std::size_t i)
