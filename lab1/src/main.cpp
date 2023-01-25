@@ -4,16 +4,23 @@
 #include <cmath>
 #include <algorithm>
 
+#include "utils.hpp"
 #include "tma.hpp"
 #include "balance.hpp"
 #include "data_table.hpp"
 
 int main()
 {
-  auto data_table = get_data();
+  auto data_table = get_data< float >();
+  std::size_t N = 10;
+
+  std::vector< float > first(N + 1);
+  std::vector< float > second(N + 1);
+
   for (auto data : data_table)
   {
-    balance_solve(10, data);
+    balance_solve(N, data, first, second);
+    std::cout << eps(first, second) << "\n";
   }
   // balance_solve(N, );
 

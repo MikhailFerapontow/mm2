@@ -7,7 +7,7 @@
 #include "grid.hpp"
 
 template <typename T = double>
-T init_balance(
+void init_balance(
   std::size_t N,
   const Data< T >& data,
   std::vector< T >& a,
@@ -63,23 +63,23 @@ T init_balance(
 
   //тут непонятки
   a[0] = 0;
-  c[0] = r_2(1) * k_2(r_2(1)) / h_1(1) + h_2(0) * r_2(0) * q_1(r_1(0));
+  c[0] = r_2(1) * k_2(r_2(1)) / h_1(1) + h_2(0) * r_2(0) * q_1(0);
   b[0] = -r_2(1) * k_2(r_2(1)) / h_1(1);
-  r[0] = h_2(0) * r_2(0) * q_1(r_1(0)) + r_1(1) * (-nu_1);
+  r[0] = h_2(0) * r_2(0) * f_1(0) + r_1(0) * (-nu_1);
   x[0] = data.u(r_1(0));
 
-  for (int i = 0; i < N; i++)
+  for (int i = 1; i < N; i++)
   {
-    a[i] = -r_2(i) * k_2(r_2(i)) / h_1(i);
-    c[i] = r_2(i) * k_2(r_2(i)) / h_1(i) + r_2(i + 1) * k_2(r_2(i + 1)) / h_1(i + 1) + h_2(i) * r_1(i) * q_1(r_1(i));
+    a[i] = -r_2(i-1) * k_2(r_2(i-1)) / h_1(i);
+    c[i] = r_2(i-1) * k_2(r_2(i-1)) / h_1(i) + r_2(i) * k_2(r_2(i)) / h_1(i + 1) + h_2(i) * r_1(i) * q_1(i);
     b[i] = -r_2(i + 1) * k_2(r_2(i + 1)) / h_1(i + 1);
-    r[i] = h_2(i) * r_1(i) * q_1(r_1(i));
+    r[i] = h_2(i) * r_1(i) * f_1(i);
     x[i] = data.u(r_1(i));
   }
 
-  a[N] = -r_2(i) * k_2(r_2(i)) / h_1(i);
-  c[N] = r_2(i) * k_2(r_2(i)) / h_1(i) + h_2(i) * r_1(i) * q_1(r_1(i));
-  r[N] = h_2(i) * r_1(i) * q_1(r_1(i)) + r_1(i) * (-nu_2);
+  a[N] = -r_2(N-1) * k_2(r_2(N-1)) / h_1(N);
+  c[N] = r_2(N-1) * k_2(r_2(N-1)) / h_1(N) + h_2(N) * r_1(N) * q_1(N);
+  r[N] = h_2(N) * r_1(N) * q_1(N) + r_1(N) * (-nu_2);
   x[N] = data.u(r_1(N));
 }
 

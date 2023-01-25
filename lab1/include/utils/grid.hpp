@@ -79,9 +79,9 @@ class r1
 
       auto r = R_L;
 
-      for (int j = 1; j <= N; j++)
+      for (int j = 1; j <= i; j++)
       {
-        r += h_1(i);
+        r += h_1(j);
       }
       return r;
     }
