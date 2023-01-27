@@ -12,6 +12,7 @@ include(CPack)
 set(CMAKE_CXX_STANDARD 20)
 
 find_package(Boost REQUIRED COMPONENTS ALL)
+find_package(GSL REQUIRED)
 
 file(
   GLOB
@@ -30,6 +31,13 @@ target_sources(
   ${SOURCES}
 )
 
+target_include_directories(lab1
+  PRIVATE ${GSL_INCLUDE_DIRS}
+)
+target_link_libraries(lab1
+  GSL::gsl GSL::gslcblas
+)
+
 
 add_executable(tma_test
   ${CMAKE_CURRENT_SOURCE_DIR}/test/test_tma.cpp
@@ -45,5 +53,9 @@ target_link_libraries(tma_test
   ${Boost_RANGE_LIBRARY}
 )
 
-# target_include_directories(tma_test PRIVATE ${GSL_INCLUDE_DIRS})
-# target_link_libraries(test_tdma GSL::gsl GSL::gslcblas)
+target_include_directories(tma_test
+  PRIVATE ${GSL_INCLUDE_DIRS}
+)
+target_link_libraries(tma_test
+  GSL::gsl GSL::gslcblas
+)

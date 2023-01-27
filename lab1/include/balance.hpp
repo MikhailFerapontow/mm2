@@ -21,7 +21,7 @@ void balance_solve(std::size_t N, const Data< T >& data,
 
   init_balance(N, data, a, c, b, r, balance_result);
 
-  ..tma(a, c, b, r, tma_result);
+  tma(a, c, b, r, tma_result);
 };
 
 #endif
