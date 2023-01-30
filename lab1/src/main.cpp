@@ -20,9 +20,9 @@ int main()
   for (auto data : data_table)
   {
     balance_solve(N, data, first, second);
-    std::cout << eps(first, second) << "\n";
+    
+    std::cout << "\n eps = " << eps(first, second) << "\n";
   }
-  // balance_solve(N, );
 
   // std::vector<double> a = { 0, -1, -1, -1 };
   // std::vector<double> c = { 4,  4,  4,  4 };

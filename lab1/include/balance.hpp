@@ -3,6 +3,10 @@
 
 #include <cstddef>
 #include <vector>
+#include <iterator>
+#include <iostream>
+#include <functional>
+
 #include "utils/data.hpp"
 #include "utils/balance_utils.hpp"
 #include "tma.hpp"
@@ -22,6 +26,10 @@ void balance_solve(std::size_t N, const Data< T >& data,
   init_balance(N, data, a, c, b, r, balance_result);
 
   tma(a, c, b, r, tma_result);
+
+  std::copy(balance_result.begin(), balance_result.end(), std::ostream_iterator< T >(std::cout, " "));
+  std::cout << "\n";
+  std::copy(tma_result.begin(), tma_result.end(), std::ostream_iterator< T >(std::cout, " "));
 };
 
 #endif

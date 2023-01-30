@@ -43,6 +43,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 report/document.tex
+report/preamble.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

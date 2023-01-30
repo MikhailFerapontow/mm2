@@ -26,7 +26,7 @@ class h1
 
   private:
     std::size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 template <typename T = double>
@@ -60,7 +60,7 @@ class h2
 
   private:
     std::size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 template <typename T = double>
@@ -83,11 +83,12 @@ class r1
       {
         r += h_1(j);
       }
+
       return r;
     }
   private:
     std::size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 
@@ -95,7 +96,7 @@ template <typename T = double>
 class r2
 {
   public:
-    r2(std::size_t N, const Data< T > data):
+    r2(std::size_t N, const Data< T >& data):
       N_(N),
       data_(data)
     {}
@@ -116,7 +117,7 @@ class r2
     }
   private:
     std::size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 template <typename T = double>
@@ -138,14 +139,14 @@ class k1
 
   private:
     std::size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 template <typename T = double>
 class k2
 {
   public:
-    k2(std::size_t N, const Data< T > data):
+    k2(std::size_t N, const Data< T >& data):
       N_(N),
       data_(data)
     {}
@@ -160,14 +161,14 @@ class k2
 
   private:
     size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 template <typename T = double>
 class q
 {
   public:
-    q(std::size_t N, const Data< T > data):
+    q(std::size_t N, const Data< T >& data):
       N_(N),
       data_(data)
     {}
@@ -182,14 +183,14 @@ class q
 
   private:
     std::size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 template <typename T = double>
 class f
 {
   public:
-    f(std::size_t N, const Data< T > data):
+    f(std::size_t N, const Data< T >& data):
       N_(N),
       data_(data)
     {}
@@ -204,7 +205,7 @@ class f
 
   private:
     std::size_t N_;
-    const Data< T > data_;
+    const Data< T >& data_;
 };
 
 #endif

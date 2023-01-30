@@ -15,8 +15,8 @@
 #include "tma.hpp"
 #include "utils.hpp"
 
-constexpr std::size_t MATRIX_SIZE = 10;
-constexpr std::size_t NUN_ITER = 10000;
+constexpr std::size_t MATRIX_SIZE = 100;
+constexpr std::size_t NUM_ITER = 10000;
 
 template <typename T = double>
 void init_test_data(
@@ -77,37 +77,39 @@ template <typename T>
 void test_tma()
 {
   std::size_t sz = MATRIX_SIZE;
-
-  std::vector< T > a(sz);
-  std::vector< T > c(sz);
-  std::vector< T > b(sz);
-  std::vector< T > r(sz);
-  std::vector< T > x(sz);
-
-  std::vector< T > result(sz);
-  init_test_data(a, c, b, r, x);
-
-  tma(a, c, b, r, result);
-
-  double cond_num = cond(a, c, b);
-  double eps =  std::numeric_limits< T >::epsilon();
-
-  double norm1 = 0;
-  double norm2 = 0;
-
-  for (auto&& tuple : boost::combine(x, result))
+  for (std::size_t i = 0; i < NUM_ITER; i++)
   {
-    T y1, y2;
-    boost::tie(y1, y2) = tuple;
+    std::vector< T > a(sz);
+    std::vector< T > c(sz);
+    std::vector< T > b(sz);
+    std::vector< T > r(sz);
+    std::vector< T > x(sz);
 
-    double v1 = std::fabs(y1 - y2);
-    double v2 = std::fabs(y1);
+    std::vector< T > result(sz);
+    init_test_data(a, c, b, r, x);
 
-    norm1 = (v1 > norm1 ? v1 : norm1);
-    norm2 = (v2 > norm2 ? v2 : norm2);
+    tma(a, c, b, r, result);
+
+    double cond_num = cond(a, c, b);
+    double eps =  std::numeric_limits< T >::epsilon();
+
+    double norm1 = 0;
+    double norm2 = 0;
+
+    for (auto&& tuple : boost::combine(x, result))
+    {
+      T y1, y2;
+      boost::tie(y1, y2) = tuple;
+
+      double v1 = std::fabs(y1 - y2);
+      double v2 = std::fabs(y1);
+
+      norm1 = (v1 > norm1 ? v1 : norm1);
+      norm2 = (v2 > norm2 ? v2 : norm2);
+    }
+
+    BOOST_REQUIRE_SMALL(norm1, cond_num * eps * norm2);
   }
-
-  BOOST_REQUIRE_SMALL(norm1, cond_num * eps * norm2);
 }
 
 #endif
