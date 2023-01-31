@@ -42,11 +42,6 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
-report/document.tex
-report/preamble.tex
-report/tex/balance.tex
-report/tex/tma.tex
-report/tex/error.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

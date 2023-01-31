@@ -1,0 +1,51 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{preamble.tex}
+
+\begin{document}
+	\include{titlepage.tex}
+	\newpage
+	\tableofcontents
+	\newpage
+
+	\section{Вступление}
+	\subsection{Постановка задачи}
+
+	Вариант CP. Используя интегро-интерполяционный метод (метод баланса), разработать программу для моделирования стационарного распределения температуры в полом цилиндре, описываемого математической моделью вида:
+	\begin{align*}
+		-\left[ \frac{1}{r} \frac{d}{dr} \left(r k(r)\frac{du}{dr} \right)\ -\ q(r)u \right]
+		&= f(r),\ r \in \left[ R_L,\ R_R\right],\ R_L > 0,
+		\\
+		 0 < c_1 \leq k(r) \leq c_2,\ 0 \leq q(r)&
+	\end{align*}
+	Граничные условия: \newline
+	\begin{align*}
+		&k \left. \frac{du}{dr}\right\vert_{r = R_L}\ =\ -\nu _1
+		&-k \left. \frac{du}{dr}\right\vert_{r = R_R}\ =\ -\nu_2
+	\end{align*}
+	\subsection{Используемое ПО}
+
+	\begin{enumerate}
+		\item \href{https://www.boost.org/}{Boost library} - библиотека для тестирования и других функций
+	\end{enumerate}
+	\newpage
+
+	\section{Основная часть}
+	\input{tex/balance.tex}
+
+	\input{tex/tma.tex}
+	\newpage
+
+	\input{tex/error.tex}
+	\newpage
+
+	\section{Заключение}
+	\subsection{Вывод}
+	\subsection{Код}
+	\begin{footnotesize}
+		\begin{lstlisting} [language=C++, frame=single, tabsize=2, gobble=6, label={lst:tmah}]
+			/* tma.hpp */
+		\end{lstlisting}
+	\end{footnotesize}
+
+\end{document}

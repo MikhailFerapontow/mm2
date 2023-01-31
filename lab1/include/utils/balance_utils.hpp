@@ -2,7 +2,6 @@
 #define BALANCE_UTILS_HPP
 
 #include <vector>
-#include <iostream>
 
 #include "data.hpp"
 #include "grid.hpp"
@@ -44,7 +43,7 @@ void init_balance(
   a[0] = 0;
   c[0] = r_2(0) * k_2(0) / h_1(1) + h_2(0) * r_1(0) * q_1(0);
   b[0] = -r_2(0) * k_2(0) / h_1(1);
-  r[0] = h_2(0) * r_1(0) * f_1(0) + r_1(0) * (-nu_1);
+  r[0] = h_2(0) * r_1(0) * f_1(0) + r_1(0) * nu_1;
   x[0] = data.u(r_1(0));
 
   for (int i = 1; i < N; i++)
@@ -62,6 +61,7 @@ void init_balance(
   c[N] = r_2(N - 1) * k_2(N - 1) / h_1(N)
          + h_2(N) * r_1(N) * q_1(N);
   r[N] = h_2(N) * r_1(N) * f_1(N) + r_1(N) * nu_2;
+  b[N] = 0;
   x[N] = data.u(r_1(N));
 }
 

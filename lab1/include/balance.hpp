@@ -27,9 +27,10 @@ void balance_solve(std::size_t N, const Data< T >& data,
 
   tma(a, c, b, r, tma_result);
 
-  std::copy(balance_result.begin(), balance_result.end(), std::ostream_iterator< T >(std::cout, " "));
-  std::cout << "\n";
-  std::copy(tma_result.begin(), tma_result.end(), std::ostream_iterator< T >(std::cout, " "));
+  // std::copy(balance_result.begin(), balance_result.end(), std::ostream_iterator< T >(std::cout, " "));
+  // std::cout << "\n";
+  // std::copy(tma_result.begin(), tma_result.end(), std::ostream_iterator< T >(std::cout, " "));
+  // std::cout << "\n";
 };
 
 #endif

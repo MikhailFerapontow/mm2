@@ -11,12 +11,12 @@ std::vector< Data< T > > get_data()
   std::vector< Data< T > > data_table =
   {
     {
-      0, 10,
+      1, 2,
+      [](T r) -> T { return 2 * r + 3; },
+      [](T r) -> T { return r; },
       [](T r) -> T { return 1; },
-      [](T r) -> T { return 1; },
-      [](T r) -> T { return 1; },
-      [](T r) -> T { return 1; },
-      1, 0
+      [](T r) -> T { return 2 * r - 1; },
+      -2, 4
     },
   };
 
