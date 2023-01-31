@@ -1,0 +1,144 @@
+\subsection{Тестирование}
+
+\subsubsection{Метод прогонки}
+
+Нижняя и верхняя диагональ заполняются случайными числами. Главная диагональ заполняется следующим образом:
+\[
+  c_i = \left\lvert a_i \right\rvert + \left\lvert b_i \right\rvert + 1
+\]
+Главная диагональ заполняется таким образом для уменьшения возможности появления плохо обусловленной матрицы.
+Также случайными числами заполняется вектор решения $ x $.
+
+Чтобы получить вектор $ g $, мы умножаем матрицу на вектор решения. После получения вектора $ g $
+используем наш метод прогонки, чтобы получить вектор решения $ \tilde{x} $. Для прохождения теста, полученные данные должны
+соответствовать следующему неравенству:
+\[
+  \left\lVert \tilde{x} - x \right\rVert < cond(A) \varepsilon_M \left\lVert x \right\rVert 
+\]
+Результат выполнения тестов:
+\begin{center}
+  \includegraphics[width=\textwidth]{img/test.pdf}
+\end{center}
+
+\subsubsection{Интегро-интерполяционный метод}
+
+Выполним нашу программу на ряде входных параметров
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ c | *{8}c }
+    \toprule
+    Номер теста & k & q & u & f & $\nu_1 $ & $\nu_2 $ & $R_L$ & $R_R$\\
+    \midrule
+    1 & r & 1 & 2r + 3 & 2r - 1 & -2 & 4 & 1 & 2 \\
+    \midrule
+    2 & $r^2$ & 1 & $2r^2 + 3$ & $-14r^2 + 3$ & -4 & 32 & 1 & 2 \\
+    \midrule
+    3 & $r^3$ & 1 & $2r^3 + 3$ & $-36r^4 + 2r^3 + 3$ & -6 & 192 & 1 & 2 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Результаты тестов:
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{c | c | c}
+      \toprule
+      N & $ \left\lVert \varepsilon \right\rVert  $, одинарная точность & $ \left\lVert \varepsilon \right\rVert  $, двойная точность \\
+      \midrule
+      8 & 2.45905e-03 & 2.46952e-03\\
+      16 & 6.10828e-04 & 6.19519e-04\\
+      32 & 1.39713e-04 & 1.55015e-04\\
+      64 & 6.91414e-05 & 3.87621e-05\\
+      128 & 6.19888e-05 & 9.69106e-06\\
+      256 & 2.66743e-03 & 2.42279e-06\\
+      512 & 9.03511e-03 & 6.05706e-07\\
+      1024 & 9.06944e-03 & 1.51435e-07\\
+      2048 & 4.98871e-01 & 3.78822e-08\\
+      \bottomrule
+    \end{tabular}
+    \caption{Погрешность теста №1}
+  \end{table}
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{c | c | c}
+      \toprule
+      N & $ \left\lVert \varepsilon \right\rVert  $, одинарная точность & $ \left\lVert \varepsilon \right\rVert  $, двойная точность \\
+      \midrule
+      8 & 1.49273e-01 & 1.49265e-01\\
+      16 & 3.73564e-02 & 3.73383e-02\\
+      32 & 9.32503e-03 & 9.33596e-03\\
+      64 & 1.68228e-03 & 2.33408e-03\\
+      128 & 1.65176e-03 & 5.83525e-04\\
+      256 & 1.83487e-03 & 1.45882e-04\\
+      512 & 2.59638e-02 & 3.64704e-05\\
+      1024 & 7.11317e-01 & 9.11763e-06\\
+      2048 & 5.93484 & 2.27931e-06\\
+      \bottomrule
+    \end{tabular}
+    \caption{Погрешность теста №2}
+  \end{table}
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{c | c | c}
+      \toprule
+      N & $ \left\lVert \varepsilon \right\rVert  $, одинарная точность & $ \left\lVert \varepsilon \right\rVert  $, двойная точность \\
+      \midrule
+      8 & 2.52285 & 2.52289\\
+      16 & 6.31502e-01 & 6.31225e-01\\
+      32 & 1.5601e-01 & 1.57838e-01\\
+      64 & 4.27036e-02 & 3.94614e-02\\
+      128 & 1.83411e-02 & 9.86546e-03\\
+      256 & 7.73621e-03 & 2.46637e-03\\
+      512 & 2.19547e-01 & 6.16594e-04\\
+      1024 & 1.32325 & 1.54148e-04\\
+      2048 & 17.763 & 3.85369e-05\\
+      \bottomrule
+    \end{tabular}
+    \caption{Погрешность теста №3}
+  \end{table}
+
+  Добавим еще один тест
+  \begin{align*}
+    k &= \sin(r) \quad q = \cos(r) \quad u = \tan(r) \\
+    r &\in [\pi; \frac{3 \cdot \pi}{2} ]
+  \end{align*}
+
+  Находим значение $f$ как:
+  \[
+    -\left[ \frac{1}{r} \frac{d}{dr} \left(r \cdot \sin(r) \cdot \frac{d \tan(r)}{dr} \right)\ -\ \cos(r) \cdot \tan(r) \right] = f(r),
+  \]
+
+  Получаем:
+  \[
+    f(r) = \frac{\cos(r)^2}{r} + \sin(2 \cdot r) + \frac{\sin(r)^2}{\cos(r)}
+  \]
+
+  Находим значения $ \nu_1 $ и $ \nu_2 $:
+  \begin{align*}
+		&k \left. \frac{d\tan(r)}{dr}\right\vert_{r = \pi} = -\nu _1
+		&-k \left. \frac{d\tan(r)}{dr}\right\vert_{r = \frac{3 \cdot \pi}{2}} = -\nu_2 \\
+    & \nu_1 = 1 \\
+    &\nu_2 = 0
+  \end{align*}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{c | c | c}
+      \toprule
+      N & $ \left\lVert \varepsilon \right\rVert  $, одинарная точность & $ \left\lVert \varepsilon \right\rVert  $, двойная точность \\
+      \midrule
+      8 & 1.1626e-02 & 1.16233e-02\\
+      16 & 4.26462e-03 & 4.26086e-03\\
+      32 & 9.20491e-02 & 9.30977e-02\\
+      64 & 1.34945e-04 & 1.13523e-04\\
+      128 & 5.553e-05 & 3.75747e-05\\
+      256 & 3.72678e-05 & 1.3292e-05\\
+      512 & 2.75075e-04 & 5.95552e-06\\
+      1024 & 1.2811e-03 & 8.8951e-07\\
+      2048 & 1.11288e-02 & 1.11339e-07\\
+      \bottomrule
+    \end{tabular}
+    \caption{Погрешность теста №4}
+  \end{table}
