@@ -27,6 +27,7 @@
 
 	\begin{enumerate}
 		\item \href{https://www.boost.org/}{Boost library} - библиотека для тестирования и других функций
+		\item \href{https://www.gnu.org/software/gsl/}{\textbf{GSL}} - GNU Scientific Library. Математическая библиотека для C и C++.
 	\end{enumerate}
 	\newpage
 
@@ -46,13 +47,17 @@
 	\subsection{Вывод}
 	Задание выполнено в полном объеме.
 	Был написан написан метод приближенного вычисления краевой задачи и метод прогонки, а также написаны тесты к ним.
-	Была оценена погрешность.
-
+	Была оценена погрешность и выявлена зависимость погрешности от числа разбиения.
+	\newpage
 	\subsection{Код}
-	\begin{footnotesize}
-		\begin{lstlisting} [language=C++, frame=single, tabsize=2, gobble=6, label={lst:tmah}]
-			/* tma.hpp */
-		\end{lstlisting}
-	\end{footnotesize}
-
+	\inputminted{c++}{../lab1/src/main.cpp}
+	\inputminted{c++}{../lab1/src/data_table.hpp}
+	\inputminted{c++}{../lab1/include/tma.hpp}
+	\inputminted{c++}{../lab1/include/balance.hpp}
+	\inputminted{c++}{../lab1/include/utils.hpp}
+	\inputminted{c++}{../lab1/include/utils/balance_utils.hpp}
+	\inputminted{c++}{../lab1/include/utils/data.hpp}
+	\inputminted{c++}{../lab1/include/utils/grid.hpp}
+	\inputminted{c++}{../lab1/test/test_tma.cpp}
+	\inputminted{c++}{../lab1/test/test_utils.hpp}
 \end{document}
