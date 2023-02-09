@@ -39,7 +39,7 @@
   \end{tabular}
 \end{table}
 
-Результаты тестов:
+После запуска программы мы получаем следующие результаты:
   \begin{table}[H]
     \centering
     \begin{tabular}{c | c | c}
@@ -102,26 +102,26 @@
 
   Добавим еще один тест
   \begin{align*}
-    k &= \sin(r) \quad q = \cos(r) \quad u = \tg(r) \\
-    r &\in [\pi; \frac{3 \cdot \pi}{2} ]
+    k &= \frac{\ln(r)}{r} \quad q = \cos(r) \quad u = \sin(r) \\
+    r &\in [\frac{\pi}{6}; \frac{\pi}{3} ]
   \end{align*}
 
   Находим значение $f$ как:
   \[
-    -\left[ \frac{1}{r} \frac{d}{dr} \left(r \cdot \sin(r) \cdot \frac{d \tg(r)}{dr} \right)\ -\ \cos(r) \cdot \tg(r) \right] = f(r),
+    -\left[ \frac{1}{r} \frac{d}{dr} \left(r \cdot \frac{\ln(r)}{r} \cdot \frac{d \sin(r)}{dr} \right)\ -\ \cos(r) \cdot \sin(r) \right] = f(r),
   \]
 
   Получаем:
   \[
-    f(r) = \frac{\cos(r)^2}{r} + \sin(2 \cdot r) + \frac{\sin(r)^2}{\cos(r)}
+    f(r) = -\frac{\cos(r) - r\ln(r)\cdot\sin(r)}{r^2} + \cos(r)\sin(r)
   \]
 
   Находим значения $ \nu_1 $ и $ \nu_2 $:
   \begin{align*}
-		&sin(r) \left. \frac{d\tg(r)}{dr}\right\vert_{r = \pi} = -\nu _1
-		&-sin(r) \left. \frac{d\tg(r)}{dr}\right\vert_{r = \frac{3 \cdot \pi}{2}} = -\nu_2 \\
-    & \nu_1 = 1 \\
-    &\nu_2 = 0
+		& \frac{\ln(r)}{r} \left. \frac{d\sin(r)}{dr}\right\vert_{r = \frac{\pi}{6}} = -\nu _1
+		&-\frac{\ln(r)}{r} \left. \frac{d\sin(r)}{dr}\right\vert_{r = \frac{\pi}{3}} = -\nu_2 \\
+    & \nu_1 = -\frac{\ln(\frac{\pi}{6}) \cdot 3\sqrt{3}}{\pi} \\
+    &\nu_2 = \frac{\ln(\frac{\pi}{3})\cdot3}{2 \cdot \pi}
   \end{align*}
   \begin{table}[H]
     \centering
@@ -129,16 +129,20 @@
       \toprule
       N & $ \left\lVert \varepsilon \right\rVert  $, одинарная точность & $ \left\lVert \varepsilon \right\rVert  $, двойная точность \\
       \midrule
-      8 & 1.1626e-02 & 1.16233e-02\\
-      16 & 4.26462e-03 & 4.26086e-03\\
-      32 & 9.20491e-02 & 9.30977e-02\\
-      64 & 1.34945e-04 & 1.13523e-04\\
-      128 & 5.553e-05 & 3.75747e-05\\
-      256 & 3.72678e-05 & 1.3292e-05\\
-      512 & 2.75075e-04 & 5.95552e-06\\
-      1024 & 1.2811e-03 & 8.8951e-07\\
-      2048 & 1.11288e-02 & 1.11339e-07\\
+      8 & 5.99104e-3 & 5.99104e-3\\
+      16 & 1.614304e-3 & 1.614304e-3\\
+      32 & 5.16205e-4 & 5.16205e-4\\
+      64 & 1.10805e-4 & 1.36056e-4\\
+      128 & 3.13878e-4 & 5.854e-05\\
+      256 & 8.02338e-4 & 1.19619e-05\\
+      512 & 2.43866e-3 & 3.43873e-06\\
+      1024 & 1.43307e-2 & 1.16275e-06\\
+      2048 & 0.451278 & 1.84805e-07\\
       \bottomrule
     \end{tabular}
     \caption{Погрешность теста №4}
   \end{table}
+
+На данных тестах можно проследить зависимость погрешности от числа разбиений, которую мы выявили в предыдущей главе, что при увеличении шага
+в 2 раза погрешность должна уменьшаться примерно в 4 раза. Также можно проследить что есть число разбиений при котором погрешность минимальна.
+При дальнейшем увеличении числа разбиений погрешность увеличивается (данное явление можно заметить на тестах одинарной точности).
