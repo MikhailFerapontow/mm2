@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{preamble.tex}
+
+\begin{document}
+	\include{titlepage.tex}
+	\newpage
+	\tableofcontents
+	\newpage
+
+	\section{Вступление}
+	\subsection{Постановка задачи}
+
+	Вариант CP. Используя интегро-интерполяционный метод (метод баланса), разработать программу для моделирования нестационарного распределения температуры в полом цилиндре, описываемого математической моделью вида:
+	\begin{align*}
+		&\frac{\partial u}{\partial t} = \frac{1}{r} \frac{\partial}{\partial r}
+		\left ( rk(r, t)\frac{\partial u}{\partial r} \right ) - q(r, t)u + f(r,t),
+		\ r \in \left[ R_L,\ R_R\right],\ t \in [0, T],
+		\\
+		&0 < c_1 \leq k(r, t) \leq c_2,\ 0 \leq q(r, t)
+	\end{align*}
+
+	Начальное условие:
+	\[
+		\left. u \right\vert_{t=0} = \varphi(r)
+	\]
+
+	Граничные условия: \newline
+	\begin{align*}
+		&k \left. \frac{\partial u}{\partial r}\right\vert_{r = R_L} = -\nu_1(t)
+		&-k \left. \frac{\partial u}{\partial r}\right\vert_{r = R_R} = -\nu_2(t)
+	\end{align*}
+	\subsection{Используемое ПО}
+
+	\begin{enumerate}
+		\item \href{https://www.boost.org/}{Boost library} - библиотека для тестирования и других функций
+		\item \href{https://www.gnu.org/software/gsl/}{\textbf{GSL}} - GNU Scientific Library. Математическая библиотека для C и C++.
+	\end{enumerate}
+	\newpage
+
+	\section{Основная часть}
+	\input{tex/balance.tex}
+	\newpage
+
+	\section{Заключение}
+	\subsection{Вывод}
+	\newpage
+	\subsection{Код}
+\end{document}
