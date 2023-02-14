@@ -29,13 +29,13 @@
 \end{align*}
 
 \[
-  \int^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
-  \int^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
-  - \int^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} rqu dr - \int^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} rf dr
+  \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
+  \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
+  - \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} rqu dr - \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} rf dr
 \]
 
 \[
-  \int^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} \varphi(x)dx \approx \hbar_i \varphi(x)
+  \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} \varphi(x)dx \approx \hbar_i \varphi(x)
 \]
 \[
   \hbar_i r_i \frac{d v_i}{dt} = \left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_{i+\frac{1}{2}}}
@@ -59,9 +59,9 @@
 
 Проведем аппроксимацию граничного условия слева:
 \[
-  \int^{x_i+\frac{1}{2}}_{x_i} r \frac{\partial u}{\partial t} dt =
-  \int^{x_i+\frac{1}{2}}_{x_i} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
-  - \int^{x_i+\frac{1}{2}}_{x_i} rqu dr - \int^{x_i+\frac{1}{2}}_{x_i} rf dr,\ i = 0
+  \int\limits^{x_i+\frac{1}{2}}_{x_i} r \frac{\partial u}{\partial t} dt =
+  \int\limits^{x_i+\frac{1}{2}}_{x_i} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
+  - \int\limits^{x_i+\frac{1}{2}}_{x_i} rqu dr - \int\limits^{x_i+\frac{1}{2}}_{x_i} rf dr,\ i = 0
 \]
 \[
   \hbar_i r_i \frac{d v_i}{dt} = \left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_{i+\frac{1}{2}}}
@@ -85,9 +85,9 @@
 
 Проведем аппроксимацию граничного условия справа:
 \[
-  \int^{x_i}_{x_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
-  \int^{x_i}_{x_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
-  - \int^{x_i}_{x_i-\frac{1}{2}} rqu dr - \int^{x_i}_{x_i-\frac{1}{2}} rf dr,\ i = N
+  \int\limits^{x_i}_{x_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
+  \int\limits^{x_i}_{x_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
+  - \int\limits^{x_i}_{x_i-\frac{1}{2}} rqu dr - \int\limits^{x_i}_{x_i-\frac{1}{2}} rf dr,\ i = N
 \]
 \[
   \hbar_i r_i \frac{d v_i}{dt} = \left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_i}
@@ -196,19 +196,19 @@
 
 Введем дискретизацию по времени и проинтегрируем на одном из промежутков:
 \[
-  \int_{t_{n}}^{t_n+1} \frac{d v_i}{dt} \,dt = \int_{t_{n}}^{t_n+1} (Av + g) dt
+  \int\limits_{t_{n}}^{t_n+1} \frac{d v_i}{dt} \,dt = \int\limits_{t_{n}}^{t_n+1} (Av + g) dt
 \]
 \[
-  v(t_{n+1}) - v(t_n) = \int_{t_{n}}^{t_n+1} (Av + g) dt
+  v(t_{n+1}) - v(t_n) = \int\limits_{t_{n}}^{t_n+1} (Av + g) dt
 \]
 \[
-  v(t_{n+1}) = v(t_n) + \int_{t_{n}}^{t_n+1} (Av + g) dt
+  v(t_{n+1}) = v(t_n) + \int\limits_{t_{n}}^{t_n+1} (Av + g) dt
 \]
 
 Добавим к полученному уравнению начальное условие и тем самым получаем систему:
 \[
   \begin{cases}
-    v(t_{n+1}) = v(t_n) + \int_{t_{n}}^{t_n+1} (Av + g) dt \\
+    v(t_{n+1}) = v(t_n) + \int\limits_{t_{n}}^{t_n+1} (Av + g) dt \\
     v(t_0) = \varphi(r)
   \end{cases}
 \]

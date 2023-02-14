@@ -37,14 +37,12 @@ std::vector< Data< T > > get_data()
     {
       M_PI / 6, M_PI / 3,
       [](T r) -> T { return std::sin(r); }, //u
-      [](T r) -> T { return std::log(r) / r + 2; },//k
+      [](T r) -> T { return std::log(r) / r; },//k
       [](T r) -> T { return std::cos(r); }, //q
       [](T r) -> T {
-         return -( (1 + 2 * r) * std::cos(r) - r * std::sin(r) * (std::log(r) + 2 * r) ) / std::pow(r, 2)
-         + std::cos(r) * std::sin(r);
+         return ((-std::cos(r) + r * std::log(r) * std::sin(r)) / std::pow(r, 2) ) + std::cos(r) * std::sin(r);
       },
-      - ( 3 * std::log(M_PI / 6) * std::sqrt(3) + std::sqrt(3) * M_PI) / M_PI,
-      (3 * std::log(M_PI / 3) + 2 * M_PI)/ (2 * M_PI)
+      -std::log(M_PI / 6) * 3 * std::sqrt(3) / M_PI, 3 * std::log(M_PI / 3) / (2 * M_PI)
     },
   };
 

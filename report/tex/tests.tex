@@ -102,26 +102,26 @@
 
   Добавим еще один тест
   \begin{align*}
-    k &= \frac{\ln(r)}{r} \quad q = \cos(r) \quad u = \sin(r) \\
+    k &= \frac{\ln(r)}{r} + 2 \quad q = \cos(r) \quad u = \sin(r) \\
     r &\in [\frac{\pi}{6}; \frac{\pi}{3} ]
   \end{align*}
 
   Находим значение $f$ как:
   \[
-    -\left[ \frac{1}{r} \frac{d}{dr} \left(r \cdot \frac{\ln(r)}{r} \cdot \frac{d \sin(r)}{dr} \right)\ -\ \cos(r) \cdot \sin(r) \right] = f(r),
+    -\left[ \frac{1}{r} \frac{d}{dr} \left(r \cdot (\frac{\ln(r)}{r} + 2 ) \cdot \frac{d \sin(r)}{dr} \right)\ -\ \cos(r) \cdot \sin(r) \right] = f(r),
   \]
 
   Получаем:
   \[
-    f(r) = -\frac{\cos(r) - r\ln(r)\cdot\sin(r)}{r^2} + \cos(r)\sin(r)
+    f(r) = -\frac{(1+2r) \cos(r) - r \sin(r) (\ln(r) + 2r)}{r^2} + \cos(r)\sin(r)
   \]
 
   Находим значения $ \nu_1 $ и $ \nu_2 $:
   \begin{align*}
-		& \frac{\ln(r)}{r} \left. \frac{d\sin(r)}{dr}\right\vert_{r = \frac{\pi}{6}} = -\nu _1
-		&-\frac{\ln(r)}{r} \left. \frac{d\sin(r)}{dr}\right\vert_{r = \frac{\pi}{3}} = -\nu_2 \\
-    & \nu_1 = -\frac{\ln(\frac{\pi}{6}) \cdot 3\sqrt{3}}{\pi} \\
-    &\nu_2 = \frac{\ln(\frac{\pi}{3})\cdot3}{2 \cdot \pi}
+		& (\frac{\ln(r)}{r} +2) \left. \frac{d\sin(r)}{dr}\right\vert_{r = \frac{\pi}{6}} = -\nu _1
+		&-(\frac{\ln(r)}{r} +2) \left. \frac{d\sin(r)}{dr}\right\vert_{r = \frac{\pi}{3}} = -\nu_2 \\
+    & \nu_1 = -\frac{3 \ln(\frac{\pi}{6}) \sqrt{3} + \pi \sqrt{3}}{\pi} \\
+    &\nu_2 = \frac{3\ln(\frac{\pi}{3}) + 2\pi}{2 \pi}
   \end{align*}
   \begin{table}[H]
     \centering
@@ -129,15 +129,15 @@
       \toprule
       N & $ \left\lVert \varepsilon \right\rVert  $, одинарная точность & $ \left\lVert \varepsilon \right\rVert  $, двойная точность \\
       \midrule
-      8 & 5.99104e-3 & 5.99104e-3\\
-      16 & 1.614304e-3 & 1.614304e-3\\
-      32 & 5.16205e-4 & 5.16205e-4\\
-      64 & 1.10805e-4 & 1.36056e-4\\
-      128 & 3.13878e-4 & 5.854e-05\\
-      256 & 8.02338e-4 & 1.19619e-05\\
-      512 & 2.43866e-3 & 3.43873e-06\\
-      1024 & 1.43307e-2 & 1.16275e-06\\
-      2048 & 0.451278 & 1.84805e-07\\
+      8 & 2.18486e-3 & 2.18486e-3\\
+      16 & 5.07295e-4 & 5.50816e-4\\
+      32 & 2.44796e-4 & 1.38007e-4\\
+      64 & 1.33216e-4 & 3.45209e-05\\
+      128 & 6.25908e-4 & 8.63144e-06\\
+      256 & 1.61629e-2 & 2.15794e-06\\
+      512 & 8.05649e-2 & 5.39484e-07\\
+      1024 & 2.45799e-1 & 1.34881e-07\\
+      2048 & 6.22395 & 3.36463e-08\\
       \bottomrule
     \end{tabular}
     \caption{Погрешность теста №4}
