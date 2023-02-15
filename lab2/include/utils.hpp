@@ -32,6 +32,55 @@ T eps(const std::vector< T > &v1,
   return eps_;
 }
 
+template< typename T >
+void add( const std::vector< T >& v1 ,
+          const std::vector< T >& v2 ,
+          std::vector< T >& rez
+)
+{
+  std::size_t sz = rez.size ();
+  assert(v1.size() == sz );
+  assert(v2.size() == sz );
+
+  std::vector< double > tmp(sz);
+
+  for( std::size_t i = 0; i < sz; i++)
+  {
+    tmp [i] = v1[i] + v2[i];
+  }
+
+  eps(v1, v2);
+  rez.swap(tmp);
+}
+
+template< typename T >
+void multiply(
+  const std::vector< T >& a,
+  const std::vector< T >& c,
+  const std::vector< T >& b,
+  const std::vector< T >& x,
+  std::vector< T >& rez
+)
+{
+  std::size_t size = rez.size();
+
+  assert(a.size() == size);
+  assert(c.size() == size);
+  assert(b.size() == size);
+  assert(x.size() == size);
+
+  tmp[0] = c[0] * x[0] + b[0] * x[1];
+
+  for (std::size_t i = 1; i < size - 1; i++)
+  {
+    tmp[i] = a[i] * x[i - 1] + c[i] * x[i] + b[i] * x[i + 1];
+  }
+
+  tmp[size - 1] = a[size - 1] * x[size-2] + b[size - 1] * x[size - 1];
+
+  rez.swap(tmp);
+}
+
 template <typename T>
 T cond(
   const std::vector< T >& a,

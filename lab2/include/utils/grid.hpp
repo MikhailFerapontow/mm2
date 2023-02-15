@@ -129,12 +129,12 @@ class k1
       data_(data)
     {}
 
-    T operator() (std::size_t i)
+    T operator() (std::size_t i, T t)
     {
       auto r_1 = r1(N_, data_);
 
       auto r = r_1(i);
-      return data_.k(r);
+      return data_.k(r, t);
     }
 
   private:
@@ -151,12 +151,11 @@ class k2
       data_(data)
     {}
 
-    T operator() (std::size_t i)
+    T operator() (std::size_t i, T t)
     {
       auto r_2 = r2(N_, data_);
       auto r = r_2(i);
-
-      return data_.k(r);
+      return data_.k(r, t);
     }
 
   private:
@@ -173,12 +172,12 @@ class q
       data_(data)
     {}
 
-    T operator() (std::size_t i)
+    T operator() (std::size_t i, T t)
     {
       auto r_1 = r1(N_, data_);
       auto r = r_1(i);
 
-      return data_.q(r);
+      return data_.q(r, t);
     }
 
   private:
@@ -195,12 +194,12 @@ class f
       data_(data)
     {}
 
-    T operator() (std::size_t i)
+    T operator() (std::size_t i, T t)
     {
       auto r_1 = r1(N_, data_);
       auto r = r_1(i);
 
-      return data_.f(r);
+      return data_.f(r, t);
     }
 
   private:
