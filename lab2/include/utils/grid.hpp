@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <iostream>
+#include <cassert>
 #include "data.hpp"
 
 template <typename T = double>

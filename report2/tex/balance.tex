@@ -28,20 +28,23 @@
   \left ( rk\frac{\partial u}{\partial r} \right ) - r \cdot qu + r \cdot f
 \end{align*}
 
+Проинтегрируем наше уравнение:
 \[
-  \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
-  \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
-  - \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} rqu dr - \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} rf dr
+  \int\limits^{r_i+\frac{1}{2}}_{r_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
+  \int\limits^{r_i+\frac{1}{2}}_{r_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
+  - \int\limits^{r_i+\frac{1}{2}}_{r_i-\frac{1}{2}} rqu dr - \int\limits^{r_i+\frac{1}{2}}_{r_i-\frac{1}{2}} rf dr
 \]
 
+Используем формулу левых прямоугольников:
 \[
-  \int\limits^{x_i+\frac{1}{2}}_{x_i-\frac{1}{2}} \varphi(x)dx \approx \hbar_i \varphi(x)
+  \int\limits^{r_i+\frac{1}{2}}_{r_i-\frac{1}{2}} \varphi(x)dx \approx \hbar_i \varphi(x)
 \]
 \[
   \hbar_i r_i \frac{d v_i}{dt} = \left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_{i+\frac{1}{2}}}
   - \left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_{i-\frac{1}{2}}} -\hbar_i r_i q v_i + \hbar_i r_i f_i
 \]
 
+Используем формулы численного дифференцирования:
 \begin{align*}
   &\left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_{i+\frac{1}{2}}} = r_{i + \frac{1}{2}} k_{i + \frac{1}{2}} \frac{v_{i+1}-v_i}{h_{i + 1}} \\
   &\left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_{i-\frac{1}{2}}} = = r_{i - \frac{1}{2}} k_{i - \frac{1}{2}} \frac{v_{i}-v_{i-1}}{h_{i}}
@@ -59,9 +62,9 @@
 
 Проведем аппроксимацию граничного условия слева:
 \[
-  \int\limits^{x_i+\frac{1}{2}}_{x_i} r \frac{\partial u}{\partial t} dt =
-  \int\limits^{x_i+\frac{1}{2}}_{x_i} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
-  - \int\limits^{x_i+\frac{1}{2}}_{x_i} rqu dr - \int\limits^{x_i+\frac{1}{2}}_{x_i} rf dr,\ i = 0
+  \int\limits^{r_i+\frac{1}{2}}_{r_i} r \frac{\partial u}{\partial t} dt =
+  \int\limits^{r_i+\frac{1}{2}}_{r_i} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
+  - \int\limits^{r_i+\frac{1}{2}}_{r_i} rqu dr - \int\limits^{r_i+\frac{1}{2}}_{r_i} rf dr,\ i = 0
 \]
 \[
   \hbar_i r_i \frac{d v_i}{dt} = \left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_{i+\frac{1}{2}}}
@@ -76,18 +79,18 @@
 Получаем:
 \[
   \hbar_i r_i \frac{d v_i}{dt} = r_{i + \frac{1}{2}} k_{i + \frac{1}{2}} \frac{v_{i+1}-v_i}{h_{i + 1}} 
-  - r_i \cdot \nu_1 - \hbar_i r_i q v_i + \hbar_i r_i f_ix-\frac{1}{2},\ i = 0
+  + r_i \cdot \nu_1 - \hbar_i r_i q v_i + \hbar_i r_i f_i,\ i = 0
 \]
 \[
   \frac{d v_i}{dt} = \frac{r_{i + \frac{1}{2}} k_{i + \frac{1}{2}}}{\hbar_i r_i h_{i + 1}} (v_{i+1}-v_i)
-  - \frac{\nu_1}{\hbar_i} - q v_i + f_i,\ i = 0
+  + \frac{\nu_1}{\hbar_i} - q v_i + f_i,\ i = 0
 \]
 
 Проведем аппроксимацию граничного условия справа:
 \[
-  \int\limits^{x_i}_{x_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
-  \int\limits^{x_i}_{x_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
-  - \int\limits^{x_i}_{x_i-\frac{1}{2}} rqu dr - \int\limits^{x_i}_{x_i-\frac{1}{2}} rf dr,\ i = N
+  \int\limits^{r_i}_{r_i-\frac{1}{2}} r \frac{\partial u}{\partial t} dt =
+  \int\limits^{r_i}_{r_i-\frac{1}{2}} \frac{\partial}{\partial r} \left ( rk\frac{\partial u}{\partial r} \right ) dr
+  - \int\limits^{r_i}_{r_i-\frac{1}{2}} rqu dr - \int\limits^{r_i}_{r_i-\frac{1}{2}} rf dr,\ i = N
 \]
 \[
   \hbar_i r_i \frac{d v_i}{dt} = \left . rk \frac{\partial u}{\partial r} \right \vert_{r=r_i}
@@ -119,7 +122,7 @@
 \[
   \begin{cases}
     \frac{d v_i}{dt} = B_1 (v_{i+1}-v_i)
-    - \frac{\nu_1}{\hbar_i} - q v_i + f_i,\ i = 0 \\
+    + \frac{\nu_1}{\hbar_i} - q v_i + f_i,\ i = 0 \\
 
     \frac{d v_i}{dt} = B_1 (v_{i+1}-v_i)
     - B_2 (v_{i}-v_{i-1}) - q v_i + f_i,\ i = 1, 2, \dots, N-1 \\
@@ -132,7 +135,7 @@
 Сгруппируем значения:
 \[
   \begin{cases}
-    \frac{d v_i}{dt} = B_1 v_{i+1} - (B_1 + q_i) v_i - \frac{\nu_1}{\hbar_i} + f_i,\ i=0 \\
+    \frac{d v_i}{dt} = B_1 v_{i+1} - (B_1 + q_i) v_i + \frac{\nu_1}{\hbar_i} + f_i,\ i=0 \\
     \frac{d v_i}{dt} = B_1 v_{i+1} - (B_1 + B_2 + q_i) v_i - B_2 v_{i - 1} + f_i,\ i = 1, 2,\dots, N-1\\
     \frac{d v_i}{dt} = -(B_2 + q_i)v_i - B_2 v_{i - 1} + \frac{\nu_2}{\hbar_i} + f_i,\ i = N
   \end{cases}

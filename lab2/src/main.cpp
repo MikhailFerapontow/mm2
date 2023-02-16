@@ -1,20 +1,18 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
-#include <iterator>
-#include <cmath>
 #include <algorithm>
+#include <initializer_list>
 
-#include "utils.hpp"
-#include "tma.hpp"
-#include "balance.hpp"
+#include "utils/balance_utils.hpp"
 #include "data_table.hpp"
 #include "euler.hpp"
 
 int main()
 {
-  std::size_t N = 32;
+  std::size_t N = 16;
 
-  auto data_table = get_data< double >();
+  auto data_table = get_data();
 
   std::cout << std::scientific;
   std::cout << "forward\n";
@@ -22,8 +20,8 @@ int main()
   {
     double t0 = 0;
     std::cout << std::setprecision(0) << H << " ";
-    std::vector< double > first(N);
-    std::vector< double > final(N);
+    std::vector< double > first(N + 1);
+    std::vector< double > final(N + 1);
 
     for (auto&& data : data_table)
     {
@@ -51,8 +49,8 @@ int main()
     double t0 = 0;
     std::cout << std::setprecision(0) << H << " ";
 
-    std::vector< double > first(N);
-    std::vector< double > final(N);
+    std::vector< double > first(N + 1);
+    std::vector< double > final(N + 1);
 
     for (auto&& data : data_table)
     {

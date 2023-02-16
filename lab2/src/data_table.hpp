@@ -5,44 +5,20 @@
 #include <vector>
 #include "utils/data.hpp"
 
-template <typename T = double>
-std::vector< Data< T > > get_data()
+std::vector< Data< double > > get_data()
 {
-  std::vector< Data< T > > data_table =
+  std::vector< Data< double > > data_table =
   {
     {
-      1, 2,
-      [](T r) -> T { return 2 * r + 3; },
-      [](T r) -> T { return r; },
-      [](T r) -> T { return 1; },
-      [](T r) -> T { return 2 * r - 1; },
-      -2, 4
-    },
-    {
-      1, 2,
-      [](T r) -> T { return 2 * std::pow(r, 2) + 3; },
-      [](T r) -> T { return std::pow(r, 2); },
-      [](T r) -> T { return 1; },
-      [](T r) -> T { return -14 * std::pow(r, 2) + 3; },
-      -4, 32
-    },
-    {
-      1, 2,
-      [](T r) -> T { return 2 * std::pow(r, 3) + 3; },
-      [](T r) -> T { return std::pow(r, 3); },
-      [](T r) -> T { return 1; },
-      [](T r) -> T { return -36 * std::pow(r, 4) + 2 * std::pow(r, 3) + 3; },
-      -6, 192
-    },
-    {
       M_PI / 6, M_PI / 3,
-      [](T r) -> T { return std::sin(r); }, //u
-      [](T r) -> T { return std::log(r) / r; },//k
-      [](T r) -> T { return std::cos(r); }, //q
-      [](T r) -> T {
-         return ((-std::cos(r) + r * std::log(r) * std::sin(r)) / std::pow(r, 2) ) + std::cos(r) * std::sin(r);
+      [](double r, double t) -> double { return r; }, //u
+      [](double r, double t) -> double { return std::cos(r) / 2 + 3; },//k
+      [](double r, double t) -> double { return std::sin(r) / 2 + 2; }, //q
+      [](double r, double t) -> double {
+         return (-std::cos(r) + r * std::sin(r) - 6 + r * r * std::sin(r) + 4 * r * r) / (2 * r);
       },
-      -std::log(M_PI / 6) * 3 * std::sqrt(3) / M_PI, 3 * std::log(M_PI / 3) / (2 * M_PI)
+      [](double t) -> double { return std::sqrt(3) / 4 + 3; },
+      [](double t) -> double { return 3.25; },
     },
   };
 

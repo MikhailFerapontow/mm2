@@ -59,6 +59,7 @@
     "typeinfo": "cpp",
     "utility": "cpp",
     "variant": "cpp",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "cassert": "cpp"
   }
 }

@@ -38,13 +38,13 @@ void add( const std::vector< T >& v1 ,
           std::vector< T >& rez
 )
 {
-  std::size_t sz = rez.size ();
-  assert(v1.size() == sz );
-  assert(v2.size() == sz );
+  std::size_t size = rez.size ();
+  assert(v1.size() == size );
+  assert(v2.size() == size );
 
-  std::vector< double > tmp(sz);
+  std::vector< double > tmp(size);
 
-  for( std::size_t i = 0; i < sz; i++)
+  for( std::size_t i = 0; i < size; i++)
   {
     tmp [i] = v1[i] + v2[i];
   }
@@ -68,6 +68,8 @@ void multiply(
   assert(c.size() == size);
   assert(b.size() == size);
   assert(x.size() == size);
+
+  std::vector< T > tmp(size);
 
   tmp[0] = c[0] * x[0] + b[0] * x[1];
 

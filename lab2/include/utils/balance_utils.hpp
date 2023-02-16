@@ -2,7 +2,7 @@
 #define BALANCE_UTILS_HPP
 
 #include <vector>
-
+#include <iostream>
 #include "data.hpp"
 #include "grid.hpp"
 
@@ -20,11 +20,11 @@ void init_balance(
 {
   static_assert(std::is_floating_point< T >::value);
 
-  std::size_t sz = N + 1;
-  assert(a.size() == sz);
-  assert(c.size() == sz);
-  assert(b.size() == sz);
-  assert(r.size() == sz);
+  std::size_t size = N + 1;
+  assert(a.size() == size);
+  assert(c.size() == size);
+  assert(b.size() == size);
+  assert(r.size() == size);
 
   auto nu_1 = data.nu_1;
   auto nu_2 = data.nu_2;
@@ -40,14 +40,13 @@ void init_balance(
 
   auto q_1 = q< T >(N, data);
   auto f_1 = f< T >(N, data);
-
   double B1 = (r_2(0) * k_2(0, t)) / (h_1(1) * r_1(0) * h_2(0));
   double B2 = 0;
 
   a[0] = 0;
   c[0] = -(B1 + q_1(0, t));
   b[0] = B1;
-  r[0] = nu_1 / h_2(0) + f_1(0, t);
+  r[0] = nu_1(t) / h_2(0) + f_1(0, t);
   x[0] = data.u(r_1(0), t);
 
   for (int i = 1; i < N; i++)
@@ -55,20 +54,20 @@ void init_balance(
     B1 = (r_2(i) * k_2(i, t)) / (h_1(i + 1) * r_1(i) * h_2(i));
     B2 = (r_2(i - 1) * k_2(i - 1, t)) / (h_1(i) * r_1(i) * h_2(i));
 
-    a[0] = B2;
-    c[0] = -(B1 + B2 + q_1(i, t));
-    b[0] = B1;
-    r[0] = f_1(i, t);
-    x[0] = data.u(r_1(i), t);
+    a[i] = B2;
+    c[i] = -(B1 + B2 + q_1(i, t));
+    b[i] = B1;
+    r[i] = f_1(i, t);
+    x[i] = data.u(r_1(i), t);
   }
 
   B2 = (r_2(N - 1) * k_2(N - 1, t)) / (h_1(N) * r_1(N) * h_2(N));
 
   a[N] = B2;
-  c[N] = -(B2 + q_1(n, t));
+  c[N] = -(B2 + q_1(N, t));
   b[N] = 0;
-  r[N] = nu_2 / h_2(N);
-  x[N] = data.u(r_1(N), t)
+  r[N] = nu_2(t) / h_2(N)  + f_1(N, t);
+  x[N] = data.u(r_1(N), t);
 }
 
 
