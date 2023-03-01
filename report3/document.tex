@@ -5,16 +5,17 @@
 
 \begin{document}
 \newcommand\mLim[4]{
-  \int\limits^{r_{i+#1}}_{r_{i-#2}}
-  \int\limits^{z_{j+#3}}_{z_{j-#4}}
+  \int\limits^{r_{i #1}}_{r_{i #2}}
+  \int\limits^{z_{j #3}}_{z_{j #4}}
 }
 \newcommand\mLimS[3]
 {
-  \int\limits^{#1_{i+#2}}_{#1_{i-#3}}
+  \int\limits^{#1_{i#2}}_{#1_{i#3}}
 }
 
 \include{titlepage.tex}
-
+  \tableofcontents
+  \newpage
   \section{Вступление}
   \subsection{Постановка задачи}
 
@@ -28,14 +29,14 @@
 
   \[
     0 \le c_{11} \leq k_1(r,z) \leq c_{12},\quad 0 \le c_{11} \leq k_2(r,z) \leq c_{22},\quad
-    0 \le r \leq R \leq z \leq L
+    0 \le r \leq R,\ 0 \leq z \leq L
   \]
 
   С граничными условиями:
   \begin{align*}
     & \left . u \right \vert_{r=0} - \text{ограничено}
     &\left . -k_1 \pdv{u}{r} \right \vert_{r=R} = \chi_2 \left . u \right \vert_{r=R} - \varphi_2(z) \\
-    &\left . -k_2 \pdv{u}{z} \right \vert_{z=0} = \chi_3 \left . u \right \vert_{z=0} - \varphi_3(r)
+    &\left . k_2 \pdv{u}{z} \right \vert_{z=0} = \chi_3 \left . u \right \vert_{z=0} - \varphi_3(r)
     &\left . u \right \vert_{z=L} = \varphi_r(r) \\
     &\chi_2 \geq 0 & \chi_3 \geq 0
   \end{align*}
