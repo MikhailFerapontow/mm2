@@ -192,23 +192,6 @@
 \end{align*}
 
 \subsubsection{На верхней границе}
-Проинтегрируем наше уравнение при $ j = N_y $ и $ r $ внутри интервала.
-\[
-  - \mLim{+\frac{1}{2}}{-\frac{1}{2}}{}{-\frac{1}{2}} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{}{-\frac{1}{2}} rf(r, z)
-\]
-
-Получаем:
-\begin{align*}
-  &- \left [
-   \mLimS{z}{}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}}
-  - \mLimS{z}{}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}}
-  \right . \\
-  &\left . + \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j}}
-  - \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}}
-  \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{} rf(r, z)
-\end{align*}
-
 Имеем граничное условие:
 \[
   \left . u \right \vert_{z=L} = \varphi_r(r) 
