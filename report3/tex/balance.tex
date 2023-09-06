@@ -1,24 +1,24 @@
 \subsection{Разностная схема}
 Введем основную сетку:
 \begin{align*}
-  &N_x - \text{число разбиений на } [0, R] & &N_y - \text{число разбиений на} [0, L] \\
-  &x_0, x_1 < \cdots < x_N & &y_0 < y_1 < \cdots < y_N \\
-  &x_0 = 0,\quad x_N = R & &y_0 = 0,\quad y_N = L \\
-  &h_i = \frac{R - 0}{N_x},\quad i=0,\cdots, N_x & &h_j = \frac{L - 0}{N_y},\quad j=0,\cdots, N_y 
+  &N_r - \text{число разбиений на} [0, R] & &N_z - \text{число разбиений на} [0, L] \\
+  &r_0 < r_1 < \cdots < r_N & &z_0 < z_1 < \cdots < z_N \\
+  &r_0 = 0,\quad r_N = R & &z_0 = 0,\quad z_N = L \\
+  &h_i = \frac{R - 0}{N_r},\quad i=0,\cdots, N_r & &h_j = \frac{L - 0}{N_z},\quad j=0,\cdots, N_z 
 \end{align*}
 
 Введем дополнительную сетку:
 \begin{align*}
-  &x_{i-\frac{1}{2}} = \frac{x_i + x_{i - 1}}{2}\quad i=1,\cdots, N_x & &y_{j-\frac{1}{2}} = \frac{y_j + y_{j - 1}}{2}\quad j=1,\cdots, N_y \\
+  &r_{i-\frac{1}{2}} = \frac{r_i + r_{i - 1}}{2}\quad i=1,\cdots, N_r & &z_{j-\frac{1}{2}} = \frac{z_j + z_{j - 1}}{2}\quad j=1,\cdots, N_z \\
   &  \hbar_i = \begin{cases}
     \frac{h_i + 1}{2},\ i = 0 \\ \\
-    \frac{h_i + h_{i+1}}{2},\ i = 1, 2, \dots, N_x-1 \\ \\
-    \frac{h_i}{2},\ i = N_x
+    \frac{h_i + h_{i+1}}{2},\ i = 1, 2, \dots, N_r-1 \\ \\
+    \frac{h_i}{2},\ i = N_r
   \end{cases} &
   &   \hbar_j = \begin{cases}
     \frac{h_j + 1}{2},\ j = 0 \\ \\
-    \frac{h_j + h_{j+1}}{2},\ j = 1, 2, \dots, N_y-1 \\ \\
-    \frac{h_j}{2},\ j = N_y
+    \frac{h_j + h_{j+1}}{2},\ j = 1, 2, \dots, N_z-1 \\ \\
+    \frac{h_j}{2},\ j = N_z
   \end{cases}
 \end{align*}
 
@@ -33,19 +33,19 @@
 
 \[
   - \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z)
+  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] dr dz = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z) dr dz
 \]
 
 Получим:
 
 \begin{align*}
   &- \left [
-   \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}}
-  - \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}}
+   \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}} dz
+  - \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}} dz
   \right . \\
-  &\left . + \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}}
-  - \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}}
-  \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z)
+  &\left . + \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}} dr
+  - \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}} dr
+  \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z) dr dz
 \end{align*}
 
 Воспользуемся формулами численного дифференцирования:
@@ -90,24 +90,31 @@
 Проинтегрируем наше уравнение в $ i = 0 $ и $ z $ внутри промежутка
 \[
   - \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{-\frac{1}{2}} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z)
+  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] dr dz = \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z) dr dz
 \]
 
 Получаем:
 \begin{align*}
   - \left [
-   \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}}
-  - \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i}}
+   \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}} dz
+  - \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i}} dz
   \right . \\
-  \left . + \mLimS{r}{+\frac{1}{2}}{} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}}
-  - \mLimS{r}{+\frac{1}{2}}{} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}}
-  \right ] = \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z)
+  \left . + \mLimS{r}{+\frac{1}{2}}{} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}} dr
+  - \mLimS{r}{+\frac{1}{2}}{} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}} dr
+  \right ] = \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z) dr dz
 \end{align*}
 
 Имеем граничное условие:
 \[
-  \left . u \right \vert_{r=0} - \text{ограничено}
+  \left . u \right \vert_{r=0} - \text{ограничено, т. е } \left . \frac{\partial u}{ \partial r} \right |_{r = 0} = 0
 \]
+
+\[
+  \mLimS{r}{+ \frac{1}{2}}{} rf dr \approx f_i \mLimS{r}{ + \frac{1}{2}}{} r dr = 
+  f_i \frac{r^2_{i + \frac{1}{2}}}{2} = h_r f_i \frac{r_{i + \frac{1}{2}}}{2},
+  \quad i = 0, \quad r_i = 0, r_{i + \frac{1}{2}} = \frac{h_r}{2}
+\]
+
 
 Получаем разностную схему:
 \begin{align*}
@@ -125,18 +132,18 @@
 Проинтегрируем наше уравнение в $ i = N_x $ и $ z $ внутри промежутка
 \[
   - \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z)
+  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ]dr dz = \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z)dr dz
 \]
 
 Получаем:
 \begin{align*}
   &- \left [
-   \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i}}
-  - \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}}
+   \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i}} dz
+  - \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}} dz
   \right . \\
-  &\left . + \mLimS{r}{}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}}
-  - \mLimS{r}{}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}}
-  \right ] = \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z)
+  &\left . + \mLimS{r}{}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}} dr
+  - \mLimS{r}{}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}} dr
+  \right ] = \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z) dr dz
 \end{align*}
 
 Имеем граничное условие:
@@ -160,18 +167,18 @@
 Проинтегрируем наше уравнение $ j = 0 $ и $ i $ внутри промежутка
 \[
   - \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{} rf(r, z)
+  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] drdz = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{} rf(r, z) dr dz
 \]
 
 Получаем:
 \begin{align*}
   &- \left [
-   \mLimS{z}{+\frac{1}{2}}{}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}}
-  - \mLimS{z}{+\frac{1}{2}}{} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}}
+   \mLimS{z}{+\frac{1}{2}}{}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}} dz
+  - \mLimS{z}{+\frac{1}{2}}{} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}} dz
   \right . \\
-  &\left . + \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}}
-  - \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j}}
-  \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{} rf(r, z)
+  &\left . + \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}} dr
+  - \mLimS{r}{+\frac{1}{2}}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j}} dr
+  \right ] = \mLim{+\frac{1}{2}}{-\frac{1}{2}}{+\frac{1}{2}}{} rf(r, z) dr dz
 \end{align*}
 
 Имеем граничное условие:
@@ -197,23 +204,50 @@
   \left . u \right \vert_{z=L} = \varphi_r(r) 
 \]
 
-\subsubsection{Левый-нижний угол}
-\[
-  - \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{} rf(r, z)
-\]
-\subsubsection{Левый-верхний угол}
+\subsubsection{Правый-нижний угол}
+
+Проинегрируем наше уравнение
 \[
   - \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
   + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{} rf(r, z)
 \]
-\subsubsection{Правый-нижний угол}
-\[
-  - \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{} rf(r, z)
-\]
-\subsubsection{Правый-верхний угол}
-\[
-  - \mLim{}{-\frac{1}{2}}{}{-\frac{1}{2}} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{}{-\frac{1}{2}}{}{-\frac{1}{2}} rf(r, z)
-\]
+
+Получаем:
+
+\begin{align*}
+  &- \left [
+   \mLimS{z}{+\frac{1}{2}}{}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_i} dz
+  - \mLimS{z}{+\frac{1}{2}}{} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i - \frac{1}{2}}} dz
+  \right . \\
+  &\left . + \mLimS{r}{}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}} dr
+  - \mLimS{r}{}{-\frac{1}{2}} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j}} dr
+  \right ] = \mLim{}{-\frac{1}{2}}{+\frac{1}{2}}{} rf(r, z) dr dz
+\end{align*}
+
+Имеем граничные условия:
+
+\begin{align*}
+  &\left . -k_1 \pdv{u}{r} \right \vert_{r=R} = \chi_2 \left . u \right \vert_{r=R} - \varphi_2(z) \\
+  &\left . k_2 \pdv{u}{z} \right \vert_{z=0} = \chi_3 \left . u \right \vert_{z=0} - \varphi_3(r) 
+\end{align*}
+
+Получаем разностную схему:
+
+\begin{align*}
+  - \left [ 
+  -\hbar_j (\chi_2 \left . u \right \vert_{r=R} - \varphi_2(z) )
+  - \hbar_j r_{i-\frac{1}{2}} k_1(r_{i-\frac{1}{2}}, z_j) \frac{v_{i, j} - v_{i - 1, j}}{h_{i}}
+  \right . \\
+  \left .
+  + \hbar_i r_{i+\frac{1}{2}} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{j + 1}}
+  - \hbar_i(\chi_3 v_i - \varphi_3(r))
+  \right ]  = \hbar_i \hbar_j r_i f_{i, j}
+\end{align*}
+
+Другие углы нам известны.
+
+% \subsubsection{Правый-верхний угол}
+% \[
+%   - \mLim{}{-\frac{1}{2}}{}{-\frac{1}{2}} \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
+%   + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{v} \right ) \right ] = \mLim{}{-\frac{1}{2}}{}{-\frac{1}{2}} rf(r, z)
+% \]
