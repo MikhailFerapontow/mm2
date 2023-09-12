@@ -10,19 +10,19 @@
 Введем дополнительную сетку:
 \begin{align*}
   &r_{i-\frac{1}{2}} = \frac{r_i + r_{i - 1}}{2}\quad i=1,\cdots, N_r & &z_{j-\frac{1}{2}} = \frac{z_j + z_{j - 1}}{2}\quad j=1,\cdots, N_z \\
-  &  \hbar_i = \begin{cases}
+  & \hbar_i = \begin{cases}
     \frac{h_i + 1}{2},\ i = 0 \\ \\
     \frac{h_i + h_{i+1}}{2},\ i = 1, 2, \dots, N_r-1 \\ \\
     \frac{h_i}{2},\ i = N_r
   \end{cases} &
-  &   \hbar_j = \begin{cases}
+  & \hbar_j = \begin{cases}
     \frac{h_j + 1}{2},\ j = 0 \\ \\
     \frac{h_j + h_{j+1}}{2},\ j = 1, 2, \dots, N_z-1 \\ \\
     \frac{h_j}{2},\ j = N_z
   \end{cases}
 \end{align*}
 
-Преобразуем наше начальное уравнение
+Преобразуем наше начальное уравнение домножив на r
 
 \[
   - \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
@@ -73,11 +73,11 @@
 
 В итоге получаем разностную схему внутри интервала:
 \begin{align*}
-  - \left [ 
+  &- \left [ 
   \hbar_j r_{i+\frac{1}{2}} k_1(r_{i+\frac{1}{2}}, z_j) \frac{v_{i+1, j} - v_{i, j}}{h_{i + 1}}
   - \hbar_j r_{i-\frac{1}{2}} k_1(r_{i-\frac{1}{2}}, z_j) \frac{v_{i, j} - v_{i - 1, j}}{h_{i}}
   \right . \\
-  \left .
+  &\left .
   + \hbar_i r_{i+\frac{1}{2}} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{j + 1}}
   - \hbar_i r_{i-\frac{1}{2}} k_2(r_i, z_{j-\frac{1}{2}}) \frac{v_{i, j} - v_{i, j - 1}}{h_j}
   \right ]  = \hbar_i \hbar_j r_i f_{i, j}
@@ -95,11 +95,11 @@
 
 Получаем:
 \begin{align*}
-  - \left [
+  &- \left [
    \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}}  \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i + \frac{1}{2}}} dz
   - \mLimS{z}{+\frac{1}{2}}{-\frac{1}{2}} \left . r k_1(r, z) \pdv{u}{r} \right \vert_{r = r_{i}} dz
   \right . \\
-  \left . + \mLimS{r}{+\frac{1}{2}}{} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}} dr
+  &\left . + \mLimS{r}{+\frac{1}{2}}{} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j + \frac{1}{2}}} dr
   - \mLimS{r}{+\frac{1}{2}}{} \left . rk_2(r, z)\pdv{u}{v} \right \vert_{z = z_{j - \frac{1}{2}}} dr
   \right ] = \mLim{+\frac{1}{2}}{}{+\frac{1}{2}}{-\frac{1}{2}} rf(r, z) dr dz
 \end{align*}
