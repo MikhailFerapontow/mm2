@@ -8,6 +8,11 @@
   \int\limits^{r_{i #1}}_{r_{i #2}}
   \int\limits^{z_{j #3}}_{z_{j #4}}
 }
+
+\newcommand\Int[2]{
+  \int\limits^{#1}_{#2}
+}
+
 \newcommand\mLimS[3]
 {
   \int\limits^{#1_{i#2}}_{#1_{i#3}}
@@ -45,6 +50,9 @@
   \newpage
   \section{Основная часть}
   \input{tex/balance.tex}
+
+  \newpage
+  \input{tex/eq.tex}
 
   \newpage
   \section{Заключение}
