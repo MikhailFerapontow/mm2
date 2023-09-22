@@ -18,18 +18,23 @@
   \int\limits^{#1_{i#2}}_{#1_{i#3}}
 }
 
+\newcommand\mLimZ[4]
+{
+  \int\limits^{#1_{#4 #2}}_{#1_{#4 #3}}
+}
+
 \include{titlepage.tex}
   \tableofcontents
   \newpage
   \section{Вступление}
   \subsection{Постановка задачи}
 
-  \textbf{Вариант N.}  Используя интегро-интерполяционный метод, разработать подпрограмму для моделирования
+  \textbf{Вариант N7.}  Используя интегро-интерполяционный метод, разработать подпрограмму для моделирования
   распределения температуры в цилиндре, описываемого математической моделью
 
   \[
     - \left [ \frac{1}{r} \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
-    + \pdv{}{z} \left ( k_2(r, z)\pdv{u}{v} \right ) \right ] = f(r, z)
+    + \pdv{}{z} \left ( k_2(r, z)\pdv{u}{z} \right ) \right ] = f(r, z)
   \]
 
   \[
@@ -42,14 +47,16 @@
     & \left . u \right \vert_{r=0} - \text{ограничено} &
     &\left . -k_1 \pdv{u}{r} \right \vert_{r=R} = \chi_2 \left . u \right \vert_{r=R} - \varphi_2(z) \\
     &\left . k_2 \pdv{u}{z} \right \vert_{z=0} = \chi_3 \left . u \right \vert_{z=0} - \varphi_3(r) &
-    &\left . u \right \vert_{z=L} = \varphi_r(r) \\
+    &\left . u \right \vert_{z=L} = \varphi_4(r) \\
     &\chi_2 \geq 0 & &\chi_3 \geq 0
   \end{align*}
   
   Матрица алгебраической системы должна храниться в упакованной форме.
   \newpage
-  \section{Основная часть}
   \input{tex/balance.tex}
+
+  \newpage
+  \input{tex/discrepancy.tex}
 
   \newpage
   \input{tex/eq.tex}
