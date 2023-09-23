@@ -235,6 +235,117 @@ $
      \right]_{i, j} + \mathcal{O}(h_z^3)
 \end{align*}
 
-Порядок апроксимации $p_r = 2 - 0 $, $ p_z = 2 - 0 $.
+Порядок аппроксимации $p_r = 2 - 0 $, $ p_z = 2 - 0 $.
 
 \subsection{Невязка на левой границе}
+
+Запишем для уравнения разностной сетки на левой границе невязку:
+
+\begin{align*}
+  &- \left [ 
+    h_z r_{\frac{1}{2}} k_1(r_{\frac{1}{2}}, z_j) \frac{v_{1, j} - v_{0, j}}{h_{r}}
+    - 0
+    \right . \\
+    &\left .
+    + \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{j+\frac{1}{2}}) \frac{v_{0, j + 1} - v_{0, j}}{h_{z}}
+    - \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{j-\frac{1}{2}}) \frac{v_{0, j} - v_{0, j - 1}}{h_z}
+    \right ]  = \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} h_z f_{0, j}
+\end{align*}
+
+\begin{align*}
+  &\xi_{0, j} = \frac{h_r}{2} h_z f_{0, j} + \left [ 
+    h_z r_{\frac{1}{2}} k_1(r_{\frac{1}{2}}, z_j) \frac{v_{1, j} - v_{0, j}}{h_{r}}
+    - 0
+    \right . \\
+    &\left .
+    + \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{j+\frac{1}{2}}) \frac{v_{0, j + 1} - v_{0, j}}{h_{z}}
+    - \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{j-\frac{1}{2}}) \frac{v_{0, j} - v_{0, j - 1}}{h_z}
+    \right ]
+\end{align*}
+
+Напишем разложение Тейлора для невязки:
+
+\begin{align*}
+  &k_1(r_\frac{1}{2}, z_j) \frac{u_{1, j} - u_{0, j}}{h_r} = \left[ k_1 \frac{\partial u}{ \partial r} \right]_{i, j}
+  + \frac{h_r}{2} \left[ \frac{\partial }{ \partial r} \left( k_1 \frac{\partial u}{ \partial r} \right) \right]_{i, j} + \\
+  &+ h^2_r \left[
+    \frac{1}{6}k_1 \frac{\partial^3 u}{ \partial r^3} +
+    \frac{1}{4} \frac{\partial k_1}{ \partial r} \frac{\partial^2 u}{ \partial r^2} +
+    \frac{1}{8} \frac{\partial^2 k_1}{ \partial r^2} \frac{\partial u}{ \partial r}
+  \right]_{i ,j} + \mathcal{O}(h^3_r)
+\end{align*}
+
+\begin{align*}
+  &h_r k_2(r_0, z_{j + \frac{1}{2}}) \frac{u_{0, j + 1} - u_{0, j}}{h_z} -
+  h_r k_2(r_0, z_{j - \frac{1}{2}}) \frac{u_{0, j} - u_{0, j - 1}}{h_z} =
+  h_r \left[ h_z \left( \frac{\partial }{ \partial z} \left( k_2 \frac{\partial u}{ \partial z} \right) \right)_{i, j} \right. + \\
+  &\left. + h^3_z \left( 
+    \frac{1}{12}k_2 \frac{\partial^4 u}{ \partial z^4}  +
+    \frac{1}{6} \frac{\partial k_2}{ \partial z} \frac{\partial^3 u}{ \partial z^3} +
+    \frac{1}{8} \frac{\partial^2 k_2}{ \partial z^2} \frac{\partial^2 u}{ \partial z^2} +
+    \frac{1}{24} \frac{\partial^3 k_2}{ \partial z^3} \frac{\partial u}{ \partial z} \right)_{0, j}
+    + \mathcal{O}(h^4_z)
+  \right]
+\end{align*}
+
+\begin{align*}
+  &\xi_{0, j} = \frac{h_r}{2} h_z f_{0, j} + \left[ 2h_z \left( 
+    \left[ k_1 \frac{\partial u}{ \partial r} \right]_{i, j} +
+    \frac{h_r}{2} \left[ \frac{\partial }{ \partial r} \left( k_1 \frac{\partial u}{ \partial r} \right) \right]_{i, j} +
+  \right. \right. \\
+  & \left. + h^2_r \left[
+    \frac{1}{6}k_1 \frac{\partial^3 u}{ \partial r^3} +
+    \frac{1}{4} \frac{\partial k_1}{ \partial r} \frac{\partial^2 u}{ \partial r^2} +
+    \frac{1}{8} \frac{\partial^2 k_1}{ \partial r^2} \frac{\partial u}{ \partial r}
+  \right]_{i ,j} + \mathcal{O}(h^3_r)
+  \right) - 0 + \\
+  & \left. \frac{h_r}{2} \left( h_z \left[ \frac{\partial }{ \partial z} \left( k_2 \frac{\partial u}{ \partial z} \right) \right]_{i, j} 
+  + h^3_z \left[ 
+    \frac{1}{12}k_2 \frac{\partial^4 u}{ \partial z^4}  +
+    \frac{1}{6} \frac{\partial k_2}{ \partial z} \frac{\partial^3 u}{ \partial z^3} +
+    \frac{1}{8} \frac{\partial^2 k_2}{ \partial z^2} \frac{\partial^2 u}{ \partial z^2} +
+    \frac{1}{24} \frac{\partial^3 k_2}{ \partial z^3} \frac{\partial u}{ \partial z} \right]_{0, j}
+    + \mathcal{O}(h^4_z)
+    \right) \right]
+\end{align*}
+
+Будем искать невязку в следующем виде:
+\[
+  \Tilde{\xi}_{0, j} = \frac{\xi_{0, j}}{2 h_z}
+\]
+
+\begin{align*}
+  &\Tilde{\xi}_{0, j} = \frac{h_r}{4}
+  \left[ f 
+  + 2\frac{\partial }{ \partial r} \left( k_1 \frac{\partial u}{ \partial r} \right)
+  + \frac{\partial }{ \partial z} \left( k_2 \frac{\partial u}{ \partial z} \right)
+ \right]_{0, j}
+ + \left[ k_1 \frac{\partial u}{\partial r} \right]_{0, j} +\\
+ & + h^2_r \left[
+  \frac{1}{6}k_1 \frac{\partial^3 u}{ \partial r^3} +
+  \frac{1}{4} \frac{\partial k_1}{ \partial r} \frac{\partial^2 u}{ \partial r^2} +
+  \frac{1}{8} \frac{\partial^2 k_1}{ \partial r^2} \frac{\partial u}{ \partial r}
+  \right]_{i ,j} + \mathcal{O}(h^3_r) + \\
+ & + \frac{h_r}{4}\left[ h^2_z\left( 
+  \frac{1}{12}k_2 \frac{\partial^4 u}{ \partial z^4}  +
+  \frac{1}{6} \frac{\partial k_2}{ \partial z} \frac{\partial^3 u}{ \partial z^3} +
+  \frac{1}{8} \frac{\partial^2 k_2}{ \partial z^2} \frac{\partial^2 u}{ \partial z^2} +
+  \frac{1}{24} \frac{\partial^3 k_2}{ \partial z^3} \frac{\partial u}{ \partial z}
+  \right)_{0, j}
+  + \mathcal{O}(h^3_z) \right]
+\end{align*}
+
+Можно заметить:
+
+\[
+  \left. \frac{\partial u}{\partial r} \right|_{r=0} = 0
+\]
+
+\[
+  \left[ f 
+  + 2\frac{\partial }{ \partial r} \left( k_1 \frac{\partial u}{ \partial r} \right)
+  + \frac{\partial }{ \partial z} \left( k_2 \frac{\partial u}{ \partial z} \right)
+ \right]_{0, j} = 0
+\]
+
+Порядок аппроксимации $ p_r = 2 - 0, p_z = 2 - 0 $. 
