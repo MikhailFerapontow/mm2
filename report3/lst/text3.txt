@@ -1,0 +1,119 @@
+no,  Nx,  Ny,   n1,  delta11,  delta12,  delta13,   n2,  delta21,  delta22,  delta23
+LOG: False
+\fill[color=blue!60] ( 0 , 25 ) rectangle ( 0 , 25 );
+\fill[color=blue!60] ( 0 , 24 ) rectangle ( 1 , 25 );
+\fill[color=blue!60] ( 0 , 20 ) rectangle ( 5 , 25 );
+
+\fill[color=blue!60] ( 1 , 25 ) rectangle ( 0 , 24 );
+\fill[color=blue!60] ( 1 , 24 ) rectangle ( 1 , 24 );
+\fill[color=blue!60] ( 1 , 23 ) rectangle ( 2 , 24 );
+\fill[color=blue!60] ( 1 , 19 ) rectangle ( 6 , 24 );
+
+\fill[color=blue!60] ( 2 , 24 ) rectangle ( 1 , 23 );
+\fill[color=blue!60] ( 2 , 23 ) rectangle ( 2 , 23 );
+\fill[color=blue!60] ( 2 , 22 ) rectangle ( 3 , 23 );
+\fill[color=blue!60] ( 2 , 18 ) rectangle ( 7 , 23 );
+
+\fill[color=blue!60] ( 3 , 23 ) rectangle ( 2 , 22 );
+\fill[color=blue!60] ( 3 , 22 ) rectangle ( 3 , 22 );
+\fill[color=blue!60] ( 3 , 21 ) rectangle ( 4 , 22 );
+\fill[color=blue!60] ( 3 , 17 ) rectangle ( 8 , 22 );
+
+\fill[color=blue!60] ( 4 , 22 ) rectangle ( 3 , 21 );
+\fill[color=blue!60] ( 4 , 21 ) rectangle ( 4 , 21 );
+\fill[color=blue!60] ( 4 , 16 ) rectangle ( 9 , 21 );
+
+\fill[color=blue!60] ( 5 , 25 ) rectangle ( 0 , 20 );
+\fill[color=blue!60] ( 5 , 20 ) rectangle ( 5 , 20 );
+\fill[color=blue!60] ( 5 , 19 ) rectangle ( 6 , 20 );
+\fill[color=blue!60] ( 5 , 15 ) rectangle ( 10 , 20 );
+
+\fill[color=blue!60] ( 6 , 24 ) rectangle ( 1 , 19 );
+\fill[color=blue!60] ( 6 , 20 ) rectangle ( 5 , 19 );
+\fill[color=blue!60] ( 6 , 19 ) rectangle ( 6 , 19 );
+\fill[color=blue!60] ( 6 , 18 ) rectangle ( 7 , 19 );
+\fill[color=blue!60] ( 6 , 14 ) rectangle ( 11 , 19 );
+
+\fill[color=blue!60] ( 7 , 23 ) rectangle ( 2 , 18 );
+\fill[color=blue!60] ( 7 , 19 ) rectangle ( 6 , 18 );
+\fill[color=blue!60] ( 7 , 18 ) rectangle ( 7 , 18 );
+\fill[color=blue!60] ( 7 , 17 ) rectangle ( 8 , 18 );
+\fill[color=blue!60] ( 7 , 13 ) rectangle ( 12 , 18 );
+
+\fill[color=blue!60] ( 8 , 22 ) rectangle ( 3 , 17 );
+\fill[color=blue!60] ( 8 , 18 ) rectangle ( 7 , 17 );
+\fill[color=blue!60] ( 8 , 17 ) rectangle ( 8 , 17 );
+\fill[color=blue!60] ( 8 , 16 ) rectangle ( 9 , 17 );
+\fill[color=blue!60] ( 8 , 12 ) rectangle ( 13 , 17 );
+
+\fill[color=blue!60] ( 9 , 21 ) rectangle ( 4 , 16 );
+\fill[color=blue!60] ( 9 , 17 ) rectangle ( 8 , 16 );
+\fill[color=blue!60] ( 9 , 16 ) rectangle ( 9 , 16 );
+\fill[color=blue!60] ( 9 , 11 ) rectangle ( 14 , 16 );
+
+\fill[color=blue!60] ( 10 , 20 ) rectangle ( 5 , 15 );
+\fill[color=blue!60] ( 10 , 15 ) rectangle ( 10 , 15 );
+\fill[color=blue!60] ( 10 , 14 ) rectangle ( 11 , 15 );
+\fill[color=blue!60] ( 10 , 10 ) rectangle ( 15 , 15 );
+
+\fill[color=blue!60] ( 11 , 19 ) rectangle ( 6 , 14 );
+\fill[color=blue!60] ( 11 , 15 ) rectangle ( 10 , 14 );
+\fill[color=blue!60] ( 11 , 14 ) rectangle ( 11 , 14 );
+\fill[color=blue!60] ( 11 , 13 ) rectangle ( 12 , 14 );
+\fill[color=blue!60] ( 11 , 9 ) rectangle ( 16 , 14 );
+
+\fill[color=blue!60] ( 12 , 18 ) rectangle ( 7 , 13 );
+\fill[color=blue!60] ( 12 , 14 ) rectangle ( 11 , 13 );
+\fill[color=blue!60] ( 12 , 13 ) rectangle ( 12 , 13 );
+\fill[color=blue!60] ( 12 , 12 ) rectangle ( 13 , 13 );
+\fill[color=blue!60] ( 12 , 8 ) rectangle ( 17 , 13 );
+
+\fill[color=blue!60] ( 13 , 17 ) rectangle ( 8 , 12 );
+\fill[color=blue!60] ( 13 , 13 ) rectangle ( 12 , 12 );
+\fill[color=blue!60] ( 13 , 12 ) rectangle ( 13 , 12 );
+\fill[color=blue!60] ( 13 , 11 ) rectangle ( 14 , 12 );
+\fill[color=blue!60] ( 13 , 7 ) rectangle ( 18 , 12 );
+
+\fill[color=blue!60] ( 14 , 16 ) rectangle ( 9 , 11 );
+\fill[color=blue!60] ( 14 , 12 ) rectangle ( 13 , 11 );
+\fill[color=blue!60] ( 14 , 11 ) rectangle ( 14 , 11 );
+\fill[color=blue!60] ( 14 , 6 ) rectangle ( 19 , 11 );
+
+\fill[color=blue!60] ( 15 , 15 ) rectangle ( 10 , 10 );
+\fill[color=blue!60] ( 15 , 10 ) rectangle ( 15 , 10 );
+\fill[color=blue!60] ( 15 , 9 ) rectangle ( 16 , 10 );
+\fill[color=blue!60] ( 15 , 5 ) rectangle ( 20 , 10 );
+
+\fill[color=blue!60] ( 16 , 14 ) rectangle ( 11 , 9 );
+\fill[color=blue!60] ( 16 , 10 ) rectangle ( 15 , 9 );
+\fill[color=blue!60] ( 16 , 9 ) rectangle ( 16 , 9 );
+\fill[color=blue!60] ( 16 , 8 ) rectangle ( 17 , 9 );
+\fill[color=blue!60] ( 16 , 4 ) rectangle ( 21 , 9 );
+
+\fill[color=blue!60] ( 17 , 13 ) rectangle ( 12 , 8 );
+\fill[color=blue!60] ( 17 , 9 ) rectangle ( 16 , 8 );
+\fill[color=blue!60] ( 17 , 8 ) rectangle ( 17 , 8 );
+\fill[color=blue!60] ( 17 , 7 ) rectangle ( 18 , 8 );
+\fill[color=blue!60] ( 17 , 3 ) rectangle ( 22 , 8 );
+
+\fill[color=blue!60] ( 18 , 12 ) rectangle ( 13 , 7 );
+\fill[color=blue!60] ( 18 , 8 ) rectangle ( 17 , 7 );
+\fill[color=blue!60] ( 18 , 7 ) rectangle ( 18 , 7 );
+\fill[color=blue!60] ( 18 , 6 ) rectangle ( 19 , 7 );
+\fill[color=blue!60] ( 18 , 2 ) rectangle ( 23 , 7 );
+
+\fill[color=blue!60] ( 19 , 11 ) rectangle ( 14 , 6 );
+\fill[color=blue!60] ( 19 , 7 ) rectangle ( 18 , 6 );
+\fill[color=blue!60] ( 19 , 6 ) rectangle ( 19 , 6 );
+\fill[color=blue!60] ( 19 , 1 ) rectangle ( 24 , 6 );
+
+\fill[color=blue!60] ( 20 , 5 ) rectangle ( 20 , 5 );
+
+\fill[color=blue!60] ( 21 , 4 ) rectangle ( 21 , 4 );
+
+\fill[color=blue!60] ( 22 , 3 ) rectangle ( 22 , 3 );
+
+\fill[color=blue!60] ( 23 , 2 ) rectangle ( 23 , 2 );
+
+\fill[color=blue!60] ( 24 , 1 ) rectangle ( 24 , 1 );
+

@@ -23,6 +23,13 @@
 \usepackage{derivative}
 \usepackage{physics}
 
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{backgrounds,fit,positioning}
+\usetikzlibrary{external}
+
 \usepackage[newfloat]{minted}
 
 \setminted{
@@ -30,7 +37,8 @@
   framesep=2mm,
   baselinestretch=1.2,
   fontsize=\footnotesize,
-  linenos
+  linenos,
+  breaklines
 }
 
 \usepackage[top=3cm,bottom=3cm,left=2.5cm,right=2.5cm]{geometry}
