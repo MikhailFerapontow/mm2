@@ -1,0 +1,83 @@
+\section{Метод сопряжённых градиентов}
+
+Для решения системы линейных алгебраических уравнений использовать метод
+сопряженных градиентов с предобусловливанием. Опишем метод решения следующей системы:
+
+\[
+  Ax = b
+\]
+
+где A - симметричная, положительно определённая, матрица.
+
+\subsection{Явный метод}
+
+\RestyleAlgo{tworuled}
+\SetAlFnt{\normalsize}
+\SetAlgoNoLine
+
+\begin{algorithm*}[H]
+  \DontPrintSemicolon
+  $r^{(0)} = b - Ax^{(0)} $ \;
+  $s^{(1)} = r^{(0)} $ \;
+  $ \gamma = \sqrt{(b, b)} $
+
+  \For{$k = 1$ \KwTo $k_{max}$}{
+    $\displaystyle
+        \alpha_k = \frac{\left( r^{(k-1)},\ r^{(k-1)} \right)}{\left( As^{(k)},\ s^{(k)} \right)}
+    $\;
+    $x^{(k)} = x^{(k-1)} + \alpha_k s^{(k)}$\;
+    $r^{(k)} = r^{(k-1)} - \alpha_k s^{(k-1)}$\;
+
+    \If{$\sqrt{\left( r^{(k)},\ r^{(k)} \right)} < \gamma \varepsilon $}{
+        \textbf{break}
+    }
+
+    $\displaystyle
+        \beta_k = \frac{\left( r^{(k)},\ r^{(k)} \right)}{\left( r^{(k-1)},\ r^{(k-1)} \right)}
+    $\;
+    $s^{(k+1)} = r^{(k)} + \beta_k s^{(k)}$\;
+}
+\end{algorithm*}
+
+\subsection{Неявный метод}
+
+еявный метод основывается на использовании предобуславливания. 
+Идея заключается в том, чтобы выбрать матрицу \textbf{B}, которая является
+симметричной и положительно определенной, и приблизительно равна 
+матрице \textbf{A}. Мы выбираем \textbf{B} в виде
+$B = \Tilde{L} \Tilde{L}^T $, где $\Tilde{L} \Tilde{L}^T$ представляет собой 
+неполное разложение Холецкого для матрицы \textbf{A}.
+Позже мы объясним, почему такой выбор матрицы \textbf{B} считается оптимальным.
+
+\begin{algorithm*}[H]
+  
+  \DontPrintSemicolon
+
+  $r^{(0)} = b - A x^{(0)}$\;
+  $B w^{(0)} = r^{(0)}$\;
+  $s^{(1)} = w^{(0)}$\;
+  $B g = b$\;
+  $\gamma = \sqrt{\left( g,\ b \right)}$\;
+
+  \For{$k = 1$ \KwTo $k_{max}$}{
+      $\displaystyle
+          \alpha_k = \frac{\left( w^{(k-1)},\ r^{(k-1)} \right)}{\left( As^{(k)},\ s^{(k)} \right)}
+      $\;
+      $x^{(k)} = x^{(k-1)} + \alpha_k s^{(k)}$\;
+      $r^{(k)} = r^{(k-1)} - \alpha_k s^{(k-1)}$\;
+      $Bw^{(k)} = r^{(k)}$\;
+
+      \If{$\sqrt{\left( w^{(k)},\ r^{(k)} \right)} < \gamma \varepsilon $}{
+          \textbf{break}
+      }
+
+      $\displaystyle
+          \beta_k = \frac{\left( w^{(k)},\ r^{(k)} \right)}{\left( w^{(k-1)},\ r^{(k-1)} \right)}
+      $\;
+      $s^{(k+1)} = w^{(k)} + \beta_k s^{(k)}$\;
+  }
+\end{algorithm*}
+
+Для решения системы $Bw(k) = r(k)$ мы используем метод Гаусса.
+При выборе $B = \Tilde{L} \Tilde{L}^T $, нам остается выполнить только две обратные подстановки:
+$ \Tilde{L} z^{(k)} = r^{k} $ и $ \Tilde{L}^T w^{(k)} = z^{(k)}$.

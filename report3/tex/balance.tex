@@ -137,9 +137,9 @@
   - 0
   \right . \\
   &\left .
-  + \hbar_i r_{i} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{j + 1}}
-  - \hbar_i r_{i} k_2(r_i, z_{j-\frac{1}{2}}) \frac{v_{i, j} - v_{i, j - 1}}{h_j}
-  \right ]  = \hbar_i \hbar_j r_i f_{i, j}
+  + \hbar_i \frac{r_{i + \frac{1}{2}}}{2} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{j + 1}}
+  - \hbar_i \frac{r_{i + \frac{1}{2}}}{2} k_2(r_i, z_{j-\frac{1}{2}}) \frac{v_{i, j} - v_{i, j - 1}}{h_j}
+  \right ]  = \hbar_i \hbar_j \frac{r_{i + \frac{1}{2}}}{2} f_{i, j}
 \end{align*}
 
 Перейдём к частному:
@@ -180,7 +180,7 @@
 Получаем разностную схему:
 \begin{align*}
   &- \left [ 
-  -\hbar_j ( \chi_2 v_i - \varphi_2(z))
+  -\hbar_j r_i ( \chi_2 v_i - \varphi_2(z))
   - \hbar_j r_{i-\frac{1}{2}} k_1(r_{i-\frac{1}{2}}, z_j) \frac{v_{i, j} - v_{i - 1, j}}{h_{r}}
   \right . \\
   &\left .
@@ -193,7 +193,7 @@
 
 \begin{align*}
   &- \left [ 
-  -h_z ( \chi_2 v_{N_r} - \varphi_2(z))
+  -h_z r_{N_r} ( \chi_2 v_{N_r} - \varphi_2(z))
   - h_z r_{N_r-\frac{1}{2}} k_1(r_{N_r-\frac{1}{2}}, z_j) \frac{v_{N_r, j} - v_{N_r - 1, j}}{h_{r}}
   \right . \\
   &\left .
@@ -233,7 +233,7 @@
   \right . \\
   \left .
   + \hbar_i r_{i} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{z}}
-  - \hbar_i(\chi_3 v_i - \varphi_3(r))
+  - \hbar_i r_i (\chi_3 v_i - \varphi_3(r))
   \right ]  = \hbar_i \hbar_j r_i f_{i, j}
 \end{align*}
 
@@ -246,7 +246,7 @@
   \right . \\
   \left .
   + h_r r_{i} k_2(r_i, z_{\frac{1}{2}}) \frac{v_{i, 1} - v_{i, 0}}{h_{z}}
-  - h_r(\chi_3 v_{i, 0} - \varphi_3(r))
+  - h_r r_i (\chi_3 v_{i, 0} - \varphi_3(r))
   \right ]  = h_r \frac{h_z}{2} r_i f_{i, 0}
 \end{align*}
 
@@ -304,7 +304,7 @@
   \right . \\
   &\left .
   + \hbar_i \frac{r_{i + \frac{1}{2}}}{2} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{z}}
-  - \hbar_i \frac{r_{i + \frac{1}{2}}}{2} (\chi_3 \left . u \right \vert_{z=0} - \varphi_3(r))
+  - \hbar_i \frac{r_{i + \frac{1}{2}}}{2} (\chi_3 \left . u \right \vert_{z=0} - \varphi_3(r_0))
   \right ]  = \hbar_i \hbar_j \frac{r_{i + \frac{1}{2}}}{2} f_{i, j}
 \end{align*}
 
@@ -317,7 +317,7 @@
   \right . \\
   &\left .
   + \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{\frac{1}{2}}) \frac{v_{0, 1} - v_{0, 0}}{h_{z}}
-  - \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} (\chi_3 v_{0, 0} - \varphi_3(r))
+  - \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} (\chi_3 v_{0, 0} - \varphi_3(r_0))
   \right ]  = \frac{h_r}{2} \frac{h_z}{2} \frac{r_{\frac{1}{2}}}{2} f_{0, 0}
 \end{align*}
 
@@ -378,12 +378,12 @@
 
 \begin{align*}
   - \left [ 
-  -\hbar_j (\chi_2 \left . u \right \vert_{r=R} - \varphi_2(z) )
+  -\hbar_j r_i (\chi_2 \left . u \right \vert_{r=R} - \varphi_2(z) )
   - \hbar_j r_{i-\frac{1}{2}} k_1(r_{i-\frac{1}{2}}, z_j) \frac{v_{i, j} - v_{i - 1, j}}{h_{r}}
   \right . \\
   \left .
   + \hbar_i r_{i} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{z}}
-  - \hbar_i(\chi_3 v_i - \varphi_3(r))
+  - \hbar_i r_i (\chi_3 v_i - \varphi_3(r))
   \right ]  = \hbar_i \hbar_j r_i f_{i, j}
 \end{align*}
 
@@ -391,11 +391,11 @@
 
 \begin{align*}
   - \left [ 
-  -\frac{h_z}{2} (\chi_2 v_{N_r, 0} - \varphi_2(z) )
+  -\frac{h_z}{2} r_{N_r} (\chi_2 v_{N_r, 0} - \varphi_2(z) )
   - \frac{h_z}{2} r_{N_r-\frac{1}{2}} k_1(r_{N_r-\frac{1}{2}}, z_0) \frac{v_{N_r, 0} - v_{N_r - 1, 0}}{h_{r}}
   \right . \\
   \left .
   + \frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{\frac{1}{2}}) \frac{v_{N_r, 1} - v_{N_r, 0}}{h_{z}}
-  - \frac{h_r}{2}(\chi_3 v_{N_r, 0} - \varphi_3(r))
+  - \frac{h_r}{2} r_{N_r} (\chi_3 v_{N_r, 0} - \varphi_3(r))
   \right ]  = \frac{h_r}{2} \frac{h_z}{2} r_{N_r} f_{N_r, 0}
 \end{align*}

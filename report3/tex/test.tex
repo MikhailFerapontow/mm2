@@ -1,0 +1,81 @@
+\section{Тестирование}
+
+Протестируем постренную модель на следующих тестовых наборах:
+
+\begin{center}
+  \begin{tabular}{*4{c}}
+  \toprule
+  \makecell{№ \\ теста} & $k_1(r, z)$ & $k_2(r, z)$ & $ u(r, z)$ \\
+  \midrule
+  1 & $ x + y + 3 $ & $ x + y + 3 $ & $1$ \\
+  2 & $ 3x + 2y + 1 $ & $ 3x + 2y + 1 $ & $x^2$ \\
+  3 & $ (x + y + 3)^2 $ & $ (x + y + 3)^2 $ & $(x + 2y)^2$ \\
+  4 & $ (x + 2y + 3)^3 $ & $ (x + 2y + 3)^3 $ & $x^3 + y^2$ \\
+  \bottomrule
+  \end{tabular}
+\end{center}
+
+Все тесты имеют общие значения:
+
+\[
+  r \in [0, 1],\quad z \in [0, 2]
+\]
+
+\[
+  \xi_2 = 2,\quad \xi_3 = 3
+\]
+
+Погрешность решения задачи вычисляется следующим образом:
+\[
+\delta_1 = \frac{\left|| x - \Tilde{x} \right||_1 }{\left|| x \right||_1 }
+\]
+
+\[
+\delta_2 = \frac{\left|| x - \Tilde{x} \right||_2 }{\left|| x \right||_2 }
+\]
+
+\[
+\delta_3 = \frac{\left|| x - \Tilde{x} \right||_\infty }{\left|| x \right||_\infty }
+\]
+
+Значение $ \varepsilon $ для метода сопряжённых градиентов равно $ 10^{-8} $.
+
+\subsubsection*{Тест №1}
+
+\begin{table}[H]
+\begin{center}
+  \begin{tabular}{*{6}c}
+    \toprule
+    $ N_r $ & $ N_z $ & n & $ \delta_1 $ & $ \delta_2 $ & $ \delta_3 $ \\
+    \midrule
+    2 & 2 & 8 & $4.324e-16 $ & $7.63e-16 $ & $4.064e-16 $ \\
+    4 & 4 & 27 & $2.514e-11 $ & $2.419e-11 $ & $2.88e-11 $ \\
+    8 & 8 & 62 & $1.354e-10 $ & $1.284e-10 $ & $1.868e-10 $ \\
+    16 & 16 & 117 & $2.3e-10 $ & $6.527e-10 $ & $1.151e-10 $ \\
+    32 & 32 & 423 & $5.921e-09 $ & $1.849e-09 $ & $4.102e-09 $ \\
+    \bottomrule
+  \end{tabular}
+  \caption{Явный метод}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{*{6}c}
+      \toprule
+      $ N_r $ & $ N_z $ & n & $ \delta_1 $ & $ \delta_2 $ & $ \delta_3 $ \\
+      \midrule
+      2 & 2 & 5 & $ 9.509e-16 $ & $ 4.186e-16 $ & $ 9.29e-16 $ \\
+      4 & 4 & 9 & $2.395e-11 $ & $2.574e-11 $ & $4.137e-11 $ \\
+      8 & 8 & 15 & $ 1.62e-10 $ & $2.34e-10 $ & $1.97e-10 $ \\
+      16 & 16 & 25 & $6.74e-10$ & $9.82e-10 $ & $2.23e-10 $ \\
+      32 & 32 & 46 & $1.12e-9 $ & $1.59e-9 $ & $3.37e-9 $ \\
+      \bottomrule
+    \end{tabular}
+    \caption{Неявный метод}
+  \end{center}
+\end{table}
+
+Имеем лишь ошибку округления.
+
+\subsubsection{Тест №2}

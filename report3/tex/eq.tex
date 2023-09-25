@@ -69,7 +69,7 @@
 \]
 
 \[
-  e_m = - \frac{h_r}{h_z} r_i k_2(r_i, z_{j + 1})
+  e_m = - \frac{h_r}{h_z} r_i k_2(r_i, z_{j + \frac{1}{2}})
 \]
 
 \[
@@ -135,7 +135,7 @@
 
 \begin{align*}
   &- \left [ 
-  -h_z ( \chi_2 v_{N_r} - \varphi_2(z))
+  -h_z r_{N_r} ( \chi_2 v_{N_r, j} - \varphi_2(z))
   - h_z r_{N_r-\frac{1}{2}} k_1(r_{N_r-\frac{1}{2}}, z_j) \frac{v_{N_r, j} - v_{N_r - 1, j}}{h_{r}}
   \right . \\
   &\left .
@@ -148,12 +148,12 @@
   & - \frac{h_r}{2h_z} r_{N_r} k_2(r_{N_r}, z_{j - \frac{1}{2}}) v_{N_r, j - 1}
   - \frac{h_z}{h_r} r_{N_r - \frac{1}{2}} k_1(r_{N_r - \frac{1}{2}}, z_j) v_{N_r - 1, j} \\
   & +\left[
-    h_z\chi_2  + \frac{h_z}{h_r} r_{N_r - \frac{1}{2}} k_1(r_{N_r -\frac{1}{2}}, z_j)
+    h_z r_{N_r} \chi_2  + \frac{h_z}{h_r} r_{N_r - \frac{1}{2}} k_1(r_{N_r -\frac{1}{2}}, z_j)
     + \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r, z_{j + \frac{1}{2}}})
     + \frac{h_r}{2 h_z} r_{N_r} k_2 (r_{N_r}, z_{j - \frac{1}{2}})
   \right] v_{N_r, j} \\
   &- \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r}, z_{j + \frac{1}{2}}) v_{N_r, j + 1}
-  = \frac{h_r}{2} r_{N_r} h_z f_{N_r, j} + h_z\phi_2(z)
+  = \frac{h_r}{2} r_{N_r} h_z f_{N_r, j} + h_z r_{N_r} \varphi_2(z)
 \end{align*}
 
 Введём новые обозначения:
@@ -172,7 +172,7 @@
 \]
 
 \[
-  c_m = h_z\chi_2  + \frac{h_z}{h_r} r_{N_r - \frac{1}{2}} k_1(r_{N_r -\frac{1}{2}}, z_j)
+  c_m = h_z r_{N_r} \chi_2  + \frac{h_z}{h_r} r_{N_r - \frac{1}{2}} k_1(r_{N_r -\frac{1}{2}}, z_j)
   + \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r, z_{j + \frac{1}{2}}})
   + \frac{h_r}{2 h_z} r_{N_r} k_2 (r_{N_r}, z_{j - \frac{1}{2}})
 \]
@@ -182,7 +182,7 @@
 \]
 
 \[
-  g_m =\frac{h_r}{2} r_{N_r} h_z f_{N_r, j} + h_z\varphi_2(z)
+  g_m =\frac{h_r}{2} r_{N_r} h_z f_{N_r, j} + h_z r_{N_r} \varphi_2(z)
 \]
 
 \subsection{Запись для нижней границы}
@@ -195,18 +195,18 @@
   \right . \\
   \left .
   + h_r r_{i} k_2(r_i, z_{\frac{1}{2}}) \frac{v_{i, 1} - v_{i, 0}}{h_{z}}
-  - h_r(\chi_3 v_{i, 0} - \varphi_3(r))
+  - h_r r_i (\chi_3 v_{i, 0} - \varphi_3(r))
   \right ]  = h_r \frac{h_z}{2} r_i f_{i, 0}
 \end{align*}
 
 \begin{align*}
   &  - \frac{h_z}{2 h_r} v_{i - \frac{1}{2}} k_1(r_{i - \frac{1}{2}}, z_0) v_{i - 1, 0} \\
   & + \left[ 
-    h_r \chi_3 +\frac{h_z}{2 h_r} r_{i + \frac{1}{2}} k_1(r_{i + \frac{1}{2}}, z_0) + \frac{h_z}{2 h_r} r_{i - \frac{1}{2}} k_1(r_{i - \frac{1}{2}}, z_0)
+    h_r r_i \chi_3 +\frac{h_z}{2 h_r} r_{i + \frac{1}{2}} k_1(r_{i + \frac{1}{2}}, z_0) + \frac{h_z}{2 h_r} r_{i - \frac{1}{2}} k_1(r_{i - \frac{1}{2}}, z_0)
     + \frac{h_r}{h_z} r_i k_2(r_i, z_{\frac{1}{2}}) 
   \right] v_{i, 0} \\
   & - \frac{h_z}{2 h_r} r_{i + \frac{1}{2}} k_1(r_{i + \frac{1}{2}}, z_0) v_{i + 1, 0} - \frac{h_r}{h_z} r_i k_2 (r_i, z_{\frac{1}{2}}) v_{i, 1}
-  = h_r \frac{h_z}{2} r_i f_{i, 0} + h_r \varphi(r)
+  = h_r \frac{h_z}{2} r_i f_{i, 0} + h_r r_i \varphi(r)
 \end{align*}
 
 Введём новые обозначения:
@@ -220,7 +220,7 @@
 \]
 
 \[
-  c_m = h_r \chi_3 +\frac{h_z}{2 h_r} r_{i + \frac{1}{2}} k_1(r_{i + \frac{1}{2}}, z_0) + \frac{h_z}{2 h_r} r_{i - \frac{1}{2}} k_1(r_{i - \frac{1}{2}}, z_0)
+  c_m = h_r r_i \chi_3 +\frac{h_z}{2 h_r} r_{i + \frac{1}{2}} k_1(r_{i + \frac{1}{2}}, z_0) + \frac{h_z}{2 h_r} r_{i - \frac{1}{2}} k_1(r_{i - \frac{1}{2}}, z_0)
   + \frac{h_r}{h_z} r_i k_2(r_i, z_{\frac{1}{2}}) 
 \]
 
@@ -233,7 +233,7 @@
 \]
 
 \[
-  g_m = h_r \frac{h_z}{2} r_i f_{i, 0} + h_r \varphi_3(r)
+  g_m = h_r \frac{h_z}{2} r_i f_{i, 0} + h_r r_i \varphi_3(r)
 \]
 
 \subsection{Запись для верхней границы}
@@ -250,7 +250,7 @@
 
 где:
 \[
-  c_m = 1, \quad \varphi_m = \varphi_2(r_i)
+  c_m = 1, \quad \varphi_m = \varphi_4(r_i)
 \]
 
 
@@ -271,7 +271,7 @@
 
 \begin{align*}
   &\left[
-    \frac{h_z}{2 h_r} r_{\frac{1}{2}} k_1(r_{\frac{1}{2}}, z_0) + \frac{h_r}{2 h_z} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{\frac{1}{2}}) + \frac{h_r}{2} \chi_3
+    \frac{h_z}{2 h_r} r_{\frac{1}{2}} k_1(r_{\frac{1}{2}}, z_0) + \frac{h_r}{2 h_z} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{\frac{1}{2}}) + \frac{h_r}{2} \frac{r_\frac{1}{2}}{2} \chi_3
   \right] v_{0, 0} - \\
   & - \frac{h_z}{2 h_r} r_\frac{1}{2} k_1(r_\frac{1}{2}, z_0) v_{1,0} 
   - \frac{h_r}{2 h_z} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{\frac{1}{2}}) v_{0, 1}
@@ -286,7 +286,7 @@
 где коэффициенты ранвы:
 
 \[
-  c_m = \frac{h_z}{2 h_r} r_{\frac{1}{2}} k_1(r_{\frac{1}{2}}, z_0) + \frac{h_r}{2 h_z} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{\frac{1}{2}}) + \frac{h_r}{2} \chi_3
+  c_m = \frac{h_z}{2 h_r} r_{\frac{1}{2}} k_1(r_{\frac{1}{2}}, z_0) + \frac{h_r}{2 h_z} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{\frac{1}{2}}) + \frac{h_r}{2} \frac{r_\frac{1}{2}}{2} \chi_3
 \]
 
 \[
@@ -307,23 +307,23 @@
 
 \begin{align*}
   - \left [ 
-  -\frac{h_z}{2} (\chi_2 v_{N_r, 0} - \varphi_2(z) )
+  -\frac{h_z}{2} r_{N_r} (\chi_2 v_{N_r, 0} - \varphi_2(z) )
   - \frac{h_z}{2} r_{N_r-\frac{1}{2}} k_1(r_{N_r-\frac{1}{2}}, z_0) \frac{v_{N_r, 0} - v_{N_r - 1, 0}}{h_{r}}
   \right . \\
   \left .
   + \frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{\frac{1}{2}}) \frac{v_{N_r, 1} - v_{N_r, 0}}{h_{z}}
-  - \frac{h_r}{2}(\chi_3 v_{N_r, 0} - \varphi_3(r))
+  - \frac{h_r}{2} r_{N_r} (\chi_3 v_{N_r, 0} - \varphi_3(r))
   \right ]  = \frac{h_r}{2} \frac{h_z}{2} r_{N_r} f_{N_r, 0}
 \end{align*}
 
 \begin{align*}
   & - \frac{h_z}{2 h_r} r_{N_r - \frac{1}{2}} k_1 (r_{N_r - \frac{1}{2}}, z_0) v_{N_r - 1, 0} +\\
   & + \left[
-    \frac{h_z}{2} \chi_2 + \frac{h_z}{2 h_r} r_{N_r - \frac{1}{2}} k_1 (r_{N_r - \frac{1}{2}}, z_0) 
-    + \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r, z_{\frac{1}{2}}}) + \frac{h_r}{2} \chi_3
+    \frac{h_z}{2} r_{N_r} \chi_2 + \frac{h_z}{2 h_r} r_{N_r - \frac{1}{2}} k_1 (r_{N_r - \frac{1}{2}}, z_0) 
+    + \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r, z_{\frac{1}{2}}}) + \frac{h_r}{2} r_{N_r} \chi_3
   \right] v_{N_r, 0} - \\
   & - \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r}, z_{\frac{1}{2}}) v_{N_r, 1}
-  = \frac{h_r}{2} \frac{h_z}{2} r_{N_r} f_{N_r, 0} + \frac{h_z}{2} \varphi_2(z) + \frac{h_r}{2} \varphi_3(r)
+  = \frac{h_r}{2} \frac{h_z}{2} r_{N_r} f_{N_r, 0} + \frac{h_z}{2} r_{N_r} \varphi_2(z) + \frac{h_r}{2} r_{N_r} \varphi_3(r)
 \end{align*}
 
 Введём новые обозначения:
@@ -338,8 +338,8 @@
 \]
 
 \[
-  c_m = \frac{h_z}{2} \chi_2 + \frac{h_z}{2 h_r} r_{N_r - \frac{1}{2}} k_1 (r_{N_r - \frac{1}{2}}, z_0) 
-  + \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r, z_{\frac{1}{2}}}) + \frac{h_r}{2} \chi_3
+  c_m = \frac{h_z}{2} r_{N_r} \chi_2 + \frac{h_z}{2 h_r} r_{N_r - \frac{1}{2}} k_1 (r_{N_r - \frac{1}{2}}, z_0) 
+  + \frac{h_r}{2 h_z} r_{N_r} k_2(r_{N_r, z_{\frac{1}{2}}}) + \frac{h_r}{2} r_{N_r} \chi_3
 \]
 
 \[
@@ -347,5 +347,5 @@
 \]
 
 \[
-  g_m = \frac{h_r}{2} \frac{h_z}{2} r_{N_r} f_{N_r, 0} + \frac{h_z}{2} \varphi_2(z) + \frac{h_r}{2} \varphi_3(r)
+  g_m = \frac{h_r}{2} \frac{h_z}{2} r_{N_r} f_{N_r, 0} + \frac{h_z}{2} r_{N_r} \varphi_2(z) + \frac{h_r}{2} r_{N_r} \varphi_3(r)
 \]
