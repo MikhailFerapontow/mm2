@@ -1,29 +1,58 @@
 \section{Невязка разностной схемы}
 
+\subsection{Невязка в цилиндрической системе координат}
+
+Возьмём наше уже преобразованное уравнение
+\[
+  - \left [ \pdv{}{r} \left ( r k_1(r, z) \pdv{u}{r} \right ) 
+  + \pdv{}{z} \left ( rk_2(r, z)\pdv{u}{z} \right ) \right ] = rf(r, z)
+\]
+
+Сделаем следующие замены:
+
+\[
+  \Tilde{k}_1(r,z) = rk_1(r,z)
+\]
+
+\[
+  \Tilde{k}_2(r, z) = rk_2(r, z)
+\]
+
+\[
+  \Tilde{f}(r, z) = rf(r, z)
+\]
+
+Получаем:
+
+\[
+  - \left [ \pdv{}{r} \left ( \Tilde{k}_1(r, z) \pdv{u}{r} \right ) 
+  + \pdv{}{z} \left ( \Tilde{k}_2(r, z)\pdv{u}{z} \right ) \right ] = \Tilde{f}(r, z)
+\]
+
 \subsection{Невязка во внутренних точках}
 
 Запишем для уравнения разностной сетки во внутренних точках невязку:
 
 \begin{align*}
   &- \left [ 
-  h_z r_{i+\frac{1}{2}} k_1(r_{i+\frac{1}{2}}, z_j) \frac{v_{i+1, j} - v_{i, j}}{h_{r}}
-  - h_z r_{i-\frac{1}{2}} k_1(r_{i-\frac{1}{2}}, z_j) \frac{v_{i, j} - v_{i - 1, j}}{h_{r}}
+  h_z \Tilde{k}_1(r_{i+\frac{1}{2}}, z_j) \frac{v_{i+1, j} - v_{i, j}}{h_{r}}
+  - h_z \Tilde{k}_1(r_{i-\frac{1}{2}}, z_j) \frac{v_{i, j} - v_{i - 1, j}}{h_{r}}
   \right . \\
   &\left .
-  + h_r r_{i} k_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{z}}
-  - h_r r_{i} k_2(r_i, z_{j-\frac{1}{2}}) \frac{v_{i, j} - v_{i, j - 1}}{h_z}
-  \right ]  = h_r h_z r_i f_{i, j}
+  + h_r \Tilde{k}_2(r_i, z_{j+\frac{1}{2}}) \frac{v_{i, j + 1} - v_{i, j}}{h_{z}}
+  - h_r \Tilde{k}_2(r_i, z_{j-\frac{1}{2}}) \frac{v_{i, j} - v_{i, j - 1}}{h_z}
+  \right ]  = h_r h_z \Tilde{f}_{i, j}
 \end{align*}
 
 \begin{align*}
-  &\xi_{i, j} = h_r h_z r_i f_{i, j} + 
+  &\xi_{i, j} = h_r h_z \Tilde{f}_{i, j} + 
   \left [ 
-  h_z r_{i+\frac{1}{2}} k_1(r_{i+\frac{1}{2}}, z_j) \frac{u_{i+1, j} - u_{i, j}}{h_{r}}
-  - h_z r_{i-\frac{1}{2}} k_1(r_{i-\frac{1}{2}}, z_j) \frac{u_{i, j} - u_{i - 1, j}}{h_{r}}
+  h_z \Tilde{k}_1(r_{i+\frac{1}{2}}, z_j) \frac{u_{i+1, j} - u_{i, j}}{h_{r}}
+  - h_z \Tilde{k}_1(r_{i-\frac{1}{2}}, z_j) \frac{u_{i, j} - u_{i - 1, j}}{h_{r}}
   \right . \\
   &\left .
-  + h_r r_{i} k_2(r_i, z_{j+\frac{1}{2}}) \frac{u_{i, j + 1} - u_{i, j}}{h_{z}}
-  - h_r r_{i} k_2(r_i, z_{j-\frac{1}{2}}) \frac{u_{i, j} - u_{i, j - 1}}{h_z}
+  + h_r \Tilde{k}_2(r_i, z_{j+\frac{1}{2}}) \frac{u_{i, j + 1} - u_{i, j}}{h_{z}}
+  - h_r \Tilde{k}_2(r_i, z_{j-\frac{1}{2}}) \frac{u_{i, j} - u_{i, j - 1}}{h_z}
   \right ]
 \end{align*}
 
@@ -44,56 +73,56 @@ u_{i, j - 1} = u(r_i, z_j - h_z) = \left[
 \]
 
 \[
-  r_{i} k_2(r_i, z_{j-\frac{1}{2}}) = r_i k_2(r_i, z_j - \frac{h_z}{2}) =
+  \Tilde{k}_2(r_i, z_{j-\frac{1}{2}}) = r_i k_2(r_i, z_j - \frac{h_z}{2}) =
   \left[
-   r k_2 - \frac{h_z}{2} \frac{\partial r k_2}{\partial z}
-   + \frac{h_z^2}{8} \frac{\partial^2 r k_2}{\partial z^2}
-   - \frac{h_z^3}{48} \frac{\partial^3 r k_2}{\partial z^3}
+   \Tilde{k}_2 - \frac{h_z}{2} \frac{\partial \Tilde{k}_2}{\partial z}
+   + \frac{h_z^2}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2}
+   - \frac{h_z^3}{48} \frac{\partial^3 \Tilde{k}_2}{\partial z^3}
   \right]_{i, j} + \mathcal{O}(h^4)
 \]
 
 \begin{align*}
-  r_{i} k_2(r_i, z_{j-\frac{1}{2}}) \frac{u_{i, j} - u_{i, j - 1}}{h_z} &= 
-  \left[ r k_2 \frac{\partial u}{\partial z} \right]_{i, j}
+  \Tilde{k}_2(r_i, z_{j-\frac{1}{2}}) \frac{u_{i, j} - u_{i, j - 1}}{h_z} &= 
+  \left[ \Tilde{k}_2 \frac{\partial u}{\partial z} \right]_{i, j}
   - h_z \left[
-  \frac{1}{2} r k_2 \frac{\partial^2 u}{\partial z^2}
-  + \frac{1}{2} \frac{\partial r k_2}{\partial z} \frac{\partial u}{\partial z}
+  \frac{1}{2} \Tilde{k}_2 \frac{\partial^2 u}{\partial z^2}
+  + \frac{1}{2} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial u}{\partial z}
   \right]_{i, j} +\\
   &+ h^2_z \left[
-    \frac{1}{6} r k_2 \frac{\partial^3 u}{\partial z^3}
-    + \frac{1}{4} \frac{\partial r k_2}{\partial z} \frac{\partial^2 u}{\partial z^2}
-    + \frac{1}{8} \frac{\partial^2 r k_2}{\partial z^2} \frac{\partial u}{\partial z}
+    \frac{1}{6} \Tilde{k}_2 \frac{\partial^3 u}{\partial z^3}
+    + \frac{1}{4} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^2 u}{\partial z^2}
+    + \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial u}{\partial z}
   \right]_{i, j} -\\
   &- h^3_z \left[
-   \frac{1}{24} r k_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{12} \frac{\partial r k_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
-  + \frac{1}{16} \frac{\partial^2 r k_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
-  + \frac{1}{48} \frac{\partial^3 r k_2}{\partial z^3} \frac{\partial u}{\partial z}
+   \frac{1}{24} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{12} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
+  + \frac{1}{16} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
+  + \frac{1}{48} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
    \right]_{i, j} +\\
   &+ \mathcal{O}(h^4)
 \end{align*}
 
 Для 
 $
-  r_{i} k_2(r_i, z_{j+\frac{1}{2}})
+  \Tilde{k}_2(r_i, z_{j+\frac{1}{2}})
 $
 можно получить невязку аналогичным способом:
 
 \begin{align*}
-  r_{i} k_2(r_i, z_{j+\frac{1}{2}}) \frac{u_{i, j + 1} - u_{i, j}}{h_z} &= 
-  \left[ r k_2 \frac{\partial u}{\partial z} \right]_{i, j}
+  \Tilde{k}_2(r_i, z_{j+\frac{1}{2}}) \frac{u_{i, j + 1} - u_{i, j}}{h_z} &= 
+  \left[ \Tilde{k}_2 \frac{\partial u}{\partial z} \right]_{i, j}
   + h_z \left[
-  \frac{1}{2} r k_2 \frac{\partial^2 u}{\partial z^2}
-  + \frac{1}{2} \frac{\partial r k_2}{\partial z} \frac{\partial u}{\partial z}
+  \frac{1}{2} \Tilde{k}_2 \frac{\partial^2 u}{\partial z^2}
+  + \frac{1}{2} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial u}{\partial z}
   \right]_{i, j} +\\
   &+ h^2_z \left[
-    \frac{1}{6} r k_2 \frac{\partial^3 u}{\partial z^3}
-    + \frac{1}{4} \frac{\partial r k_2}{\partial z} \frac{\partial^2 u}{\partial z^2}
-    + \frac{1}{8} \frac{\partial^2 r k_2}{\partial z^2} \frac{\partial u}{\partial z}
+    \frac{1}{6} \Tilde{k}_2 \frac{\partial^3 u}{\partial z^3}
+    + \frac{1}{4} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^2 u}{\partial z^2}
+    + \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial u}{\partial z}
   \right]_{i, j} +\\
   &+ h^3_z \left[
-   \frac{1}{24} r k_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{12} \frac{\partial r k_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
-  + \frac{1}{16} \frac{\partial^2 r k_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
-  + \frac{1}{48} \frac{\partial^3 r k_2}{\partial z^3} \frac{\partial u}{\partial z}
+   \frac{1}{24} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{12} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
+  + \frac{1}{16} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
+  + \frac{1}{48} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
    \right]_{i, j} +\\
   &+ \mathcal{O}(h^4)
 \end{align*}
@@ -116,48 +145,48 @@ $
 \]
 
 \[
-  r_i k1 (r_{i - \frac{1}{2}}, z_j) = r_i k1(r_i - \frac{h_r}{2}, z_j) =
+  \Tilde{k}_1 (r_{i - \frac{1}{2}}, z_j) = \Tilde{k}_1(r_i - \frac{h_r}{2}, z_j) =
   \left[
-  r k1 - \frac{h_r}{2}\frac{\partial rk_1}{\partial r}
-  + \frac{h^2_r}{8}\frac{\partial^2 rk_1}{\partial r^2}
-  - \frac{h^3_r}{48}\frac{\partial^3 rk_1}{\partial r^3}
+    \Tilde{k}_1 - \frac{h_r}{2}\frac{\partial \Tilde{k}_1}{\partial r}
+  + \frac{h^2_r}{8}\frac{\partial^2 \Tilde{k}_1}{\partial r^2}
+  - \frac{h^3_r}{48}\frac{\partial^3 \Tilde{k}_1}{\partial r^3}
   \right]_{i,j} + \mathcal{O}(h^4)
 \]
 
 \begin{align*}
-  r_i k_1 (r_{i - \frac{1}{2}}, z_j) \frac{u_{i,j} - u_{i - 1, j}}{h_r} &= 
-  \left[ rk_1 \frac{\partial u}{\partial r} \right]_{i, j} -
-  h_r \left[ \frac{1}{2} rk_1 \frac{\partial^2 u}{\partial r^2} 
-    + \frac{1}{2} \frac{\partial rk_1}{\partial r}\frac{\partial u}{\partial r}
+  \Tilde{k}_1 (r_{i - \frac{1}{2}}, z_j) \frac{u_{i,j} - u_{i - 1, j}}{h_r} &= 
+  \left[ \Tilde{k}_1 \frac{\partial u}{\partial r} \right]_{i, j} -
+  h_r \left[ \frac{1}{2} \Tilde{k}_1 \frac{\partial^2 u}{\partial r^2} 
+    + \frac{1}{2} \frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial u}{\partial r}
   \right]_{i, j} +\\
-  &+ h_r^2 \left[\frac{1}{6}rk_1\frac{\partial^3 u}{\partial r^3}
-  + \frac{1}{4} \frac{\partial rk_1}{\partial r}\frac{\partial^2 u}{\partial r^2}
-  + \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2}\frac{\partial u}{\partial r}
+  &+ h_r^2 \left[\frac{1}{6}\Tilde{k}_1\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{4} \frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2}\frac{\partial u}{\partial r}
   \right]_{i, j} - \\
   &-h^3_r \left[
-  \frac{1}{24} r k_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{12}\frac{\partial rk_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
-  + \frac{1}{16} \frac{\partial^2 rk_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
-  + \frac{1}{48} \frac{\partial^3 rk_1}{\partial r^3}\frac{\partial u}{\partial r}
+  \frac{1}{24} \Tilde{k}_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{12}\frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{16} \frac{\partial^2 \Tilde{k}_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{48} \frac{\partial^3 \Tilde{k}_1}{\partial r^3}\frac{\partial u}{\partial r}
   \right]_{i,j} +\\
   &+ \mathcal{O}(h^4)
 \end{align*}
 
-Для $ r_i k1(r_{i = \frac{1}{2}}, z_j) \frac{u_{i + 1, j} - u_{i, j}}{h_r} $ можно получить невязку аналогично:
+Для $ \Tilde{k}_1(r_{i = \frac{1}{2}}, z_j) \frac{u_{i + 1, j} - u_{i, j}}{h_r} $ можно получить невязку аналогично:
 
 \begin{align*}
-  r_i k_1(r_{i + \frac{1}{2}}, z_j) \frac{u_{i + 1, j} - u_{i, j}}{h_r} &= 
-  \left[ rk_1 \frac{\partial u}{\partial r} \right]_{i, j} +
-  h_r \left[ \frac{1}{2} rk_1 \frac{\partial^2 u}{\partial r^2} 
-    + \frac{1}{2} \frac{\partial rk_1}{\partial r}\frac{\partial u}{\partial r}
+  \Tilde{k}_1(r_{i + \frac{1}{2}}, z_j) \frac{u_{i + 1, j} - u_{i, j}}{h_r} &= 
+  \left[ \Tilde{k}_1 \frac{\partial u}{\partial r} \right]_{i, j} +
+  h_r \left[ \frac{1}{2} \Tilde{k}_1 \frac{\partial^2 u}{\partial r^2} 
+    + \frac{1}{2} \frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial u}{\partial r}
   \right]_{i, j} +\\
-  &+ h_r^2 \left[\frac{1}{6}rk_1\frac{\partial^3 u}{\partial r^3}
-  + \frac{1}{4} \frac{\partial rk_1}{\partial r}\frac{\partial^2 u}{\partial r^2}
-  + \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2}\frac{\partial u}{\partial r}
+  &+ h_r^2 \left[\frac{1}{6}\Tilde{k}_1\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{4} \frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2}\frac{\partial u}{\partial r}
   \right]_{i, j} + \\
   &+ h^3_r \left[
-  \frac{1}{24} r k_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{12}\frac{\partial rk_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
-  + \frac{1}{16} \frac{\partial^2 rk_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
-  + \frac{1}{48} \frac{\partial^3 rk_1}{\partial r^3}\frac{\partial u}{\partial r}
+  \frac{1}{24} \Tilde{k}_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{12}\frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{16} \frac{\partial^2 \Tilde{k}_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{48} \frac{\partial^3 \Tilde{k}_1}{\partial r^3}\frac{\partial u}{\partial r}
   \right]_{i,j} +\\
   &+ \mathcal{O}(h^4)
 \end{align*}
@@ -165,24 +194,24 @@ $
 Тогда:
 
 \begin{align*}
-  &r_i k_1(r_{i + \frac{1}{2}}, z_j) \frac{u_{i + 1, j} - u_{i, j}}{h_r} - r_i k_1 (r_{i - \frac{1}{2}}, z_j) \frac{u_{i,j} - u_{i - 1, j}}{h_r} =
-  h_r h_z \left( \left[ rk_1 \frac{\partial^2 u}{\partial r^2} + \frac{\partial rk_1}{\partial r}\frac{\partial u}{\partial r} \right]_{i, j} \right. + \\
-  &+ \left. h^2_r\left[ \frac{1}{12} r k_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{6}\frac{\partial rk_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
-  + \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
-  + \frac{1}{24} \frac{\partial^3 rk_1}{\partial r^3}\frac{\partial u}{\partial r} \right] + \mathcal{O}(h_r^4) \right)
+  &h_z\Tilde{k}_1(r_{i + \frac{1}{2}}, z_j) \frac{u_{i + 1, j} - u_{i, j}}{h_r} - h_z\Tilde{k}_1 (r_{i - \frac{1}{2}}, z_j) \frac{u_{i,j} - u_{i - 1, j}}{h_r} =
+  h_r h_z \left( \left[ \Tilde{k}_1 \frac{\partial^2 u}{\partial r^2} + \frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial u}{\partial r} \right]_{i, j} \right. + \\
+  &+ \left. h^2_r\left[ \frac{1}{12} \Tilde{k}_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{6}\frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{24} \frac{\partial^3 \Tilde{k}_1}{\partial r^3}\frac{\partial u}{\partial r} \right] + \mathcal{O}(h_r^4) \right)
 \end{align*}
 
 
 \begin{align*}
-  &r_{i} k_2(r_i, z_{j+\frac{1}{2}}) \frac{u_{i, j + 1} - u_{i, j}}{h_z} - r_{i} k_2(r_i, z_{j-\frac{1}{2}}) \frac{u_{i, j} - u_{i, j - 1}}{h_z} =
+  &h_x\Tilde{k}_2(r_i, z_{j+\frac{1}{2}}) \frac{u_{i, j + 1} - u_{i, j}}{h_z} - h_x\Tilde{k}_2(r_i, z_{j-\frac{1}{2}}) \frac{u_{i, j} - u_{i, j - 1}}{h_z} =
   h_r h_z \left(
-    \left[ r k_2 \frac{\partial^2 u}{\partial z^2}
-    + \frac{\partial r k_2}{\partial z} \frac{\partial u}{\partial z} \right]_{i, j}
+    \left[ \Tilde{k}_2 \frac{\partial^2 u}{\partial z^2}
+    + \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial u}{\partial z} \right]_{i, j}
    \right. +\\
   &+ \left. h^2_z \left[
-    \frac{1}{12} r k_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{6} \frac{\partial r k_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
-    + \frac{1}{8} \frac{\partial^2 r k_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
-    + \frac{1}{24} \frac{\partial^3 r k_2}{\partial z^3} \frac{\partial u}{\partial z}
+    \frac{1}{12} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{6} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
+    + \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
+    + \frac{1}{24} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
      \right]_{i, j} + \mathcal{O}(h_z^4) \right)
 \end{align*}
 
@@ -193,27 +222,27 @@ $
 
 Тогда:
 \begin{align*}
-  &\tilde{\xi}_{i, j} = r_if_{i, j} + \left[ rk_1 \frac{\partial^2 u}{\partial r^2} + \frac{\partial rk_1}{\partial r}\frac{\partial u}{\partial r} \right]_{i, j} \left[ r k_2 \frac{\partial^2 u}{\partial z^2}
-  + \frac{\partial r k_2}{\partial z} \frac{\partial u}{\partial z} \right]_{i, j} + \\
-  &+h^2_r\left[ \frac{1}{12} r k_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{6}\frac{\partial rk_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
-  + \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
-  + \frac{1}{24} \frac{\partial^3 rk_1}{\partial r^3}\frac{\partial u}{\partial r} \right] + \mathcal{O}(h_r^3) + \\
+  &\tilde{\xi}_{i, j} = \Tilde{f}_{i, j} + \left[ \Tilde{k}_1 \frac{\partial^2 u}{\partial r^2} + \frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial u}{\partial r} \right]_{i, j} +  \left[ \Tilde{k}_2 \frac{\partial^2 u}{\partial z^2}
+  + \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial u}{\partial z} \right]_{i, j} + \\
+  &+h^2_r\left[ \frac{1}{12} \Tilde{k}_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{6}\frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{24} \frac{\partial^3 \Tilde{k}_1}{\partial r^3}\frac{\partial u}{\partial r} \right] + \mathcal{O}(h_r^3) + \\
   &+ h^2_z \left[
-    \frac{1}{12} r k_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{6} \frac{\partial r k_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
-    + \frac{1}{8} \frac{\partial^2 r k_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
-    + \frac{1}{24} \frac{\partial^3 r k_2}{\partial z^3} \frac{\partial u}{\partial z}
+    \frac{1}{12} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{6} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
+    + \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
+    + \frac{1}{24} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
      \right]_{i, j} + \mathcal{O}(h_z^3)
 \end{align*}
 
 Можно заметить, что:
 \[
-  \left[ rk_1 \frac{\partial^2 u}{\partial r^2} + \frac{\partial rk_1}{\partial r}\frac{\partial u}{\partial r} \right]_{i, j} =
-  \frac{\partial}{\partial r} \left( k_1 \frac{\partial u}{\partial r} \right)
+  \left[ \Tilde{k}_1 \frac{\partial^2 u}{\partial r^2} + \frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial u}{\partial r} \right]_{i, j} =
+  \frac{\partial}{\partial r} \left( \Tilde{k}_1 \frac{\partial u}{\partial r} \right)
 \]
 
 \[
-  \left[ r k_2 \frac{\partial^2 u}{\partial z^2} + \frac{\partial r k_2}{\partial z} \frac{\partial u}{\partial z} \right]_{i, j} =
-  \frac{\partial}{\partial z} \left( k_2 \frac{\partial u}{\partial z} \right)
+  \left[ \Tilde{k}_2 \frac{\partial^2 u}{\partial z^2} + \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial u}{\partial z} \right]_{i, j} =
+  \frac{\partial}{\partial z} \left( \Tilde{k}_2 \frac{\partial u}{\partial z} \right)
 \]
 
 Тем самым:
@@ -225,9 +254,23 @@ $
 Получаем:
 \begin{align*}
   &\tilde{\xi}_{i, j} = 
-  h^2_r\left[ \frac{1}{12} r k_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{6}\frac{\partial rk_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
-  + \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
-  + \frac{1}{24} \frac{\partial^3 rk_1}{\partial r^3}\frac{\partial u}{\partial r} \right] + \mathcal{O}(h_r^3) + \\
+  h^2_r\left[ \frac{1}{12} \Tilde{k}_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{6}\frac{\partial \Tilde{k}_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{24} \frac{\partial^3 \Tilde{k}_1}{\partial r^3}\frac{\partial u}{\partial r} \right]_{i,j} + \mathcal{O}(h_r^3) + \\
+  &+ h^2_z \left[
+    \frac{1}{12} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{6} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
+    + \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
+    + \frac{1}{24} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
+     \right]_{i, j} + \mathcal{O}(h_z^3)
+\end{align*}
+
+Уберём замену и вернёмся к старым обозначеням:
+
+\begin{align*}
+  &\tilde{\xi}_{i, j} = 
+  h^2_r\left[ \frac{1}{12} r k_1 \frac{\partial^4 u}{\partial r^4} - \frac{1}{6}\frac{\partial r k_1}{\partial r}\frac{\partial^3 u}{\partial r^3}
+  + \frac{1}{8} \frac{\partial^2 r k_1}{\partial r^2}\frac{\partial^2 u}{\partial r^2}
+  + \frac{1}{24} \frac{\partial^3 r k_1}{\partial r^3}\frac{\partial u}{\partial r} \right]_{i,j} + \mathcal{O}(h_r^3) + \\
   &+ h^2_z \left[
     \frac{1}{12} r k_2 \frac{\partial^4 u}{\partial z^4} - \frac{1}{6} \frac{\partial r k_2}{\partial z} \frac{\partial^3 u}{\partial z^3}
     + \frac{1}{8} \frac{\partial^2 r k_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2}
@@ -253,13 +296,13 @@ $
 \end{align*}
 
 \begin{align*}
-  &\xi_{0, j} = \frac{h_r}{2} h_z f_{0, j} + \left [ 
-    h_z r_{\frac{1}{2}} k_1(r_{\frac{1}{2}}, z_j) \frac{u_{1, j} - u_{0, j}}{h_{r}}
+  &\xi_{0, j} = \frac{h_r}{2}  h_z f_{0, j} + \left [ 
+    2 h_z k_1(r_{\frac{1}{2}}, z_j) \frac{u_{1, j} - u_{0, j}}{h_{r}}
     - 0
     \right . \\
     &\left .
-    + \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{j+\frac{1}{2}}) \frac{u_{0, j + 1} - u_{0, j}}{h_{z}}
-    - \frac{h_r}{2} \frac{r_{\frac{1}{2}}}{2} k_2(r_0, z_{j-\frac{1}{2}}) \frac{u_{0, j} - u_{0, j - 1}}{h_z}
+    + \frac{h_r}{2} k_2(r_0, z_{j+\frac{1}{2}}) \frac{u_{0, j + 1} - u_{0, j}}{h_{z}}
+    - \frac{h_r}{2} k_2(r_0, z_{j-\frac{1}{2}}) \frac{u_{0, j} - u_{0, j - 1}}{h_z}
     \right ]
 \end{align*}
 
@@ -335,7 +378,7 @@ $
   + \mathcal{O}(h^3_z) \right]
 \end{align*}
 
-Можно заметить:
+Можно заметить, что:
 
 \[
   \left. \frac{\partial u}{\partial r} \right|_{r=0} = 0
@@ -348,6 +391,23 @@ $
  \right]_{0, j} = 0
 \]
 
+Получаем:
+\begin{align*}
+  &\Tilde{\xi}_{0, j} = 
+  h^2_r \left[
+  \frac{1}{6}k_1 \frac{\partial^3 u}{ \partial r^3} +
+  \frac{1}{4} \frac{\partial k_1}{ \partial r} \frac{\partial^2 u}{ \partial r^2} +
+  \frac{1}{8} \frac{\partial^2 k_1}{ \partial r^2} \frac{\partial u}{ \partial r}
+  \right]_{i ,j} + \mathcal{O}(h^3_r) + \\
+ & + \frac{h_r}{4}\left[ h^2_z\left( 
+  \frac{1}{12}k_2 \frac{\partial^4 u}{ \partial z^4}  +
+  \frac{1}{6} \frac{\partial k_2}{ \partial z} \frac{\partial^3 u}{ \partial z^3} +
+  \frac{1}{8} \frac{\partial^2 k_2}{ \partial z^2} \frac{\partial^2 u}{ \partial z^2} +
+  \frac{1}{24} \frac{\partial^3 k_2}{ \partial z^3} \frac{\partial u}{ \partial z}
+  \right)_{0, j}
+  + \mathcal{O}(h^3_z) \right]
+\end{align*}
+
 Порядок аппроксимации $ p_r = 2 - 0 = 2, p_z = 2 - 0 = 2 $.
 
 \subsection{Невязка на правой границе}
@@ -355,83 +415,83 @@ $
 Запишем для уравнения разностной сетки на правой границе невязку:
 \begin{align*}
   &- \left [ 
-  -h_z ( \chi_2 v_{N_r} - \varphi_2(z))
-  - h_z r_{N_r-\frac{1}{2}} k_1(r_{N_r-\frac{1}{2}}, z_j) \frac{v_{N_r, j} - v_{N_r - 1, j}}{h_{r}}
+  -h_z r_{N_r} ( \chi_2 v_{N_r} - \varphi_2(z))
+  - h_z \Tilde{k}_1(r_{N_r-\frac{1}{2}}, z_j) \frac{v_{N_r, j} - v_{N_r - 1, j}}{h_{r}}
   \right . \\
   &\left .
-  + \frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{j+\frac{1}{2}}) \frac{v_{N_r, j + 1} - v_{N_r, j}}{h_{z}}
-  - \frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{j-\frac{1}{2}}) \frac{v_{N_r, j} - v_{N_r, j - 1}}{h_z}
-  \right ]  = \frac{h_r}{2} r_{N_r} h_z f_{N_r, j}
+  + \frac{h_r}{2} \Tilde{k}_2(r_{N_r}, z_{j+\frac{1}{2}}) \frac{v_{N_r, j + 1} - v_{N_r, j}}{h_{z}}
+  - \frac{h_r}{2} \Tilde{k}_2(r_{N_r}, z_{j-\frac{1}{2}}) \frac{v_{N_r, j} - v_{N_r, j - 1}}{h_z}
+  \right ]  = \frac{h_r}{2} h_z \Tilde{f}_{N_r, j}
 \end{align*}
 
 \begin{align*}
-  &\xi_{N_r, j} = \frac{h_r}{2} r_{N_r} h_z f_{N_r, j} + \left [ 
-    -h_z ( \chi_2 u_{N_r} - \varphi_2(z))
-    - h_z r_{N_r-\frac{1}{2}} k_1(r_{N_r-\frac{1}{2}}, z_j) \frac{u_{N_r, j} - u_{N_r - 1, j}}{h_{r}}
+  &\xi_{N_r, j} = \frac{h_r}{2} h_z \Tilde{f}_{N_r, j} + \left [ 
+    -h_z r_{N_r} ( \chi_2 u_{N_r} - \varphi_2(z))
+    - h_z \Tilde{k}_1(r_{N_r-\frac{1}{2}}, z_j) \frac{u_{N_r, j} - u_{N_r - 1, j}}{h_{r}}
     \right . \\
   &\left .
-  + \frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{j+\frac{1}{2}}) \frac{u_{N_r, j + 1} - u_{N_r, j}}{h_{z}}
-    - \frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{j-\frac{1}{2}}) \frac{u_{N_r, j} - u_{N_r, j - 1}}{h_z}
+  + \frac{h_r}{2} \Tilde{k}_2(r_{N_r}, z_{j+\frac{1}{2}}) \frac{u_{N_r, j + 1} - u_{N_r, j}}{h_{z}}
+    - \frac{h_r}{2} \Tilde{k}_2(r_{N_r}, z_{j-\frac{1}{2}}) \frac{u_{N_r, j} - u_{N_r, j - 1}}{h_z}
     \right ]
 \end{align*}
 
 Напишем разложение Тейлора для невязки:
 
 \begin{align*}
-  &r_{N_r-\frac{1}{2}} k_1(r_{N_r-\frac{1}{2}}, z_j) \frac{u_{N_r, j} - u_{N_r - 1, j}}{h_{r}} =
-  \left[ rk_1 \frac{\partial u}{\partial r} \right]_{N_r, j}
-  - \frac{h_2}{2} \left[ \frac{\partial }{\partial r} \left( rk \frac{\partial u}{\partial r} \right) \right]_{N_r, j} + \\
+  &\Tilde{k}_1(r_{N_r-\frac{1}{2}}, z_j) \frac{u_{N_r, j} - u_{N_r - 1, j}}{h_{r}} =
+  \left[ \Tilde{k}_1 \frac{\partial u}{\partial r} \right]_{N_r, j}
+  - \frac{h_2}{2} \left[ \frac{\partial }{\partial r} \left( \Tilde{k}_1 \frac{\partial u}{\partial r} \right) \right]_{N_r, j} + \\
   & + h^2_r \left[
-    \frac{1}{6} rk_1 \frac{\partial^3 u}{\partial r^3} +
-    \frac{1}{4} \frac{\partial rk_1}{\partial r} \frac{\partial^2 u}{\partial r^2} +
-    \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2} \frac{\partial u}{\partial r}
+    \frac{1}{6} \Tilde{k}_1 \frac{\partial^3 u}{\partial r^3} +
+    \frac{1}{4} \frac{\partial \Tilde{k}_1}{\partial r} \frac{\partial^2 u}{\partial r^2} +
+    \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2} \frac{\partial u}{\partial r}
    \right]_{N_r, j} -\\
   &- h^3_r \left[ 
-    \frac{1}{24} rk_1 \frac{\partial^4 u}{\partial r^4} +
-    \frac{1}{12} \frac{\partial rk_1}{\partial r} \frac{\partial^3 u}{\partial r^3} +
-    \frac{1}{16} \frac{\partial^2 rk_1}{\partial r^2} \frac{\partial^2 u}{\partial r^2} +
-    \frac{1}{48} \frac{\partial^3 rk_1}{\partial r^3} \frac{\partial u}{\partial r}
+    \frac{1}{24} \Tilde{k}_1 \frac{\partial^4 u}{\partial r^4} +
+    \frac{1}{12} \frac{\partial \Tilde{k}_1}{\partial r} \frac{\partial^3 u}{\partial r^3} +
+    \frac{1}{16} \frac{\partial^2 \Tilde{k}_1}{\partial r^2} \frac{\partial^2 u}{\partial r^2} +
+    \frac{1}{48} \frac{\partial^3 \Tilde{k}_1}{\partial r^3} \frac{\partial u}{\partial r}
   \right]_{N_r, j} + \mathcal{O}(h^4_r)
 \end{align*}
 
 \begin{align*}
-  &\frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{j+\frac{1}{2}}) \frac{u_{N_r, j + 1} - u_{N_r, j}}{h_{z}}
-  - \frac{h_r}{2} r_{N_r} k_2(r_{N_r}, z_{j-\frac{1}{2}}) \frac{u_{N_r, j} - u_{N_r, j - 1}}{h_z} = \\
+  &\frac{h_r}{2} \Tilde{k}_2(r_{N_r}, z_{j+\frac{1}{2}}) \frac{u_{N_r, j + 1} - u_{N_r, j}}{h_{z}}
+  - \frac{h_r}{2} \Tilde{k}_2(r_{N_r}, z_{j-\frac{1}{2}}) \frac{u_{N_r, j} - u_{N_r, j - 1}}{h_z} = \\
   &\frac{h_r}{2} \left[
-    h_z \left(\frac{\partial}{\partial z} \left( r k_2 \frac{\partial u}{\partial z} \right) \right)_{N_r, j}
+    h_z \left(\frac{\partial}{\partial z} \left( \Tilde{k}_2 \frac{\partial u}{\partial z} \right) \right)_{N_r, j}
     + h^3_z \left( 
-      \frac{1}{12} rk_2 \frac{\partial^4 u}{\partial z^4} +
-      \frac{1}{6} \frac{\partial rk_2}{\partial z} \frac{\partial^3 u}{\partial z^3} +
-      \frac{1}{8} \frac{\partial^2 rk_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2} +
-      \frac{1}{24} \frac{\partial^3 rk_2}{\partial z^3} \frac{\partial u}{\partial z}
+      \frac{1}{12} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} +
+      \frac{1}{6} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3} +
+      \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2} +
+      \frac{1}{24} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
     \right)_{N_r, j}
    \right] +\\
    & + \mathcal{O}(h^4_z)
 \end{align*}
 
 \begin{align*}
-  &\xi_{N_r, j} = \frac{h_r}{2} r_{N_r} h_z f_{N_r, j} - h_z ( \chi_2 u_{N_r} - \varphi_2(z)) -
+  &\xi_{N_r, j} = \frac{h_r}{2} h_z \Tilde{f}_{N_r, j} - h_z r_{N_r} ( \chi_2 u_{N_r} - \varphi_2(z)) -
   h_z\left[
-    \left[ rk_1 \frac{\partial u}{\partial r} \right]_{N_r, j} -
-    \frac{h_2}{2} \left[ \frac{\partial }{\partial r} \left( rk \frac{\partial u}{\partial r} \right) \right]_{N_r, j} + \right.\\
+    \left[ \Tilde{k}_1 \frac{\partial u}{\partial r} \right]_{N_r, j} -
+    \frac{h_2}{2} \left[ \frac{\partial }{\partial r} \left( \Tilde{k}_1 \frac{\partial u}{\partial r} \right) \right]_{N_r, j} + \right.\\
     & + h^2_r \left[
-    \frac{1}{6} rk_1 \frac{\partial^3 u}{\partial r^3} +
-    \frac{1}{4} \frac{\partial rk_1}{\partial r} \frac{\partial^2 u}{\partial r^2} +
-    \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2} \frac{\partial u}{\partial r}
+    \frac{1}{6} \Tilde{k}_1 \frac{\partial^3 u}{\partial r^3} +
+    \frac{1}{4} \frac{\partial \Tilde{k}_1}{\partial r} \frac{\partial^2 u}{\partial r^2} +
+    \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2} \frac{\partial u}{\partial r}
    \right]_{N_r, j} -\\
    &\left. -h^3_r \left[ 
-    \frac{1}{24} rk_1 \frac{\partial^4 u}{\partial r^4} +
-    \frac{1}{12} \frac{\partial rk_1}{\partial r} \frac{\partial^3 u}{\partial r^3} +
-    \frac{1}{16} \frac{\partial^2 rk_1}{\partial r^2} \frac{\partial^2 u}{\partial r^2} +
-    \frac{1}{48} \frac{\partial^3 rk_1}{\partial r^3} \frac{\partial u}{\partial r}
+    \frac{1}{24} \Tilde{k}_1 \frac{\partial^4 u}{\partial r^4} +
+    \frac{1}{12} \frac{\partial \Tilde{k}_1}{\partial r} \frac{\partial^3 u}{\partial r^3} +
+    \frac{1}{16} \frac{\partial^2 \Tilde{k}_1}{\partial r^2} \frac{\partial^2 u}{\partial r^2} +
+    \frac{1}{48} \frac{\partial^3 \Tilde{k}_1}{\partial r^3} \frac{\partial u}{\partial r}
   \right]_{N_r, j} + \mathcal{O}(h^4_r) \right] + \\
   &+ \frac{h_r}{2} \left[
-    h_z \left(\frac{\partial}{\partial z} \left( r k_2 \frac{\partial u}{\partial z} \right) \right)_{N_r, j}
+    h_z \left(\frac{\partial}{\partial z} \left( \Tilde{k}_2 \frac{\partial u}{\partial z} \right) \right)_{N_r, j}
     + h^3_z \left( 
-      \frac{1}{12} rk_2 \frac{\partial^4 u}{\partial z^4} +
-      \frac{1}{6} \frac{\partial rk_2}{\partial z} \frac{\partial^3 u}{\partial z^3} +
-      \frac{1}{8} \frac{\partial^2 rk_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2} +
-      \frac{1}{24} \frac{\partial^3 rk_2}{\partial z^3} \frac{\partial u}{\partial z}
+      \frac{1}{12} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} +
+      \frac{1}{6} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3} +
+      \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2} +
+      \frac{1}{24} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
     \right)_{N_r, j} +
   \right. \\
   &\left. +  \mathcal{O}(h^4_z) \right]
@@ -444,13 +504,39 @@ $
 
 \begin{align*}
   &\Tilde{\xi}_{N_r, j} = \frac{h_r}{2} \left[
-    f + \frac{\partial}{\partial r}\left( rk_1 \frac{\partial u}{\partial r}\right)
+    \Tilde{f} + \frac{\partial}{\partial r}\left( \Tilde{k}_1 \frac{\partial u}{\partial r}\right)
+    + \frac{\partial}{\partial z}\left( \Tilde{k}_2 \frac{\partial u}{\partial z}\right)
+  \right]_{N_r, j}
+  - \left[
+    \Tilde{k}_1\frac{\partial u}{\partial r} + r(\chi_2 u - \varphi(z))
+  \right]_{N_r, j} +\\
+  & +h^2_r \left[
+    \frac{1}{6} \Tilde{k}_1 \frac{\partial^3 u}{\partial r^3} +
+    \frac{1}{4} \frac{\partial \Tilde{k}_1}{\partial r} \frac{\partial^2 u}{\partial r^2} +
+    \frac{1}{8} \frac{\partial^2 \Tilde{k}_1}{\partial r^2} \frac{\partial u}{\partial r}
+  \right]_{N_r, j} + \mathcal{O}(h^3_r) +\\
+  &+\frac{h_r}{2} \left[
+    h^2_z \left( 
+      \frac{1}{12} \Tilde{k}_2 \frac{\partial^4 u}{\partial z^4} +
+      \frac{1}{6} \frac{\partial \Tilde{k}_2}{\partial z} \frac{\partial^3 u}{\partial z^3} +
+      \frac{1}{8} \frac{\partial^2 \Tilde{k}_2}{\partial z^2} \frac{\partial^2 u}{\partial z^2} +
+      \frac{1}{24} \frac{\partial^3 \Tilde{k}_2}{\partial z^3} \frac{\partial u}{\partial z}
+    \right)_{N_r, j}
+    +  \mathcal{O}(h^3_z)
+  \right]
+\end{align*}
+
+Уберём замену и вернёмся к старым обозначениям:
+
+\begin{align*}
+  &\Tilde{\xi}_{N_r, j} = \frac{h_r}{2} \left[
+    rf + \frac{\partial}{\partial r}\left( rk_1 \frac{\partial u}{\partial r}\right)
     + \frac{\partial}{\partial z}\left( rk_2 \frac{\partial u}{\partial z}\right)
   \right]_{N_r, j}
   - \left[
-    rk1\frac{\partial u}{\partial r} + (\chi_2 u - \varphi(z))
-  \right]_{N_r, j} -\\
-  & -h^2_r \left[
+    rk_1\frac{\partial u}{\partial r} + r(\chi_2 u - \varphi(z))
+  \right]_{N_r, j} +\\
+  & +h^2_r \left[
     \frac{1}{6} rk_1 \frac{\partial^3 u}{\partial r^3} +
     \frac{1}{4} \frac{\partial rk_1}{\partial r} \frac{\partial^2 u}{\partial r^2} +
     \frac{1}{8} \frac{\partial^2 rk_1}{\partial r^2} \frac{\partial u}{\partial r}
@@ -470,13 +556,13 @@ $
 
 \[
   \left[
-    rk1\frac{\partial u}{\partial r} + (\chi_2 u - \varphi(z))
+    rk1\frac{\partial u}{\partial r} + r(\chi_2 u - \varphi(z))
   \right]_{N_r, j} = 0
 \]
 
 \[
-  \left[f + \frac{\partial}{\partial r}\left( rk_1 \frac{\partial u}{\partial r}\right)
-    + \frac{\partial}{\partial z}\left( rk_2 \frac{\partial u}{\partial z}\right) \right]_{N_r, j} = 0
+  \left[rf + \frac{\partial}{\partial r}\left( \Tilde{k}_1 \frac{\partial u}{\partial r}\right)
+    + \frac{\partial}{\partial z}\left( \Tilde{k}_2 \frac{\partial u}{\partial z}\right) \right]_{N_r, j} = 0
 \]
 
 Порядок аппроксимации $ p_r = 2 - 0 = 2, p_z = 2 - 0 = 2 $.
